@@ -6,6 +6,7 @@
                             "French (France)" : "Bidon d'essence",
                             "Japanese" : "ガソリン缶",
                             "Polish" : "Kanister",
+                            "Turkish" : "Yakıt Bidonu",
                             "Traditional Chinese" : "汽油罐",
                             "Simplified Chinese" : "汽油罐"
     },
@@ -16,6 +17,7 @@
                             "French (France)" : "Un vieux bidon d'essence. Peut tout aussi bien servir à stocker du kérosène.",
                             "Japanese" : "古いガソリン携行缶。石油を入れるのに適している。",
                             "Polish" : "Stary kanister. Odpowiedni do przechowywania paliwa.",
+                            "Turkish" : "Eski bir yakıt bidonu. Gazyağı da tutar.",
                             "Traditional Chinese" : "一個老舊的汽油罐，也可拿來裝燃油。",
                             "Simplified Chinese" : "一个老旧的汽油罐，也可拿来装燃油。"
               
@@ -43,7 +45,7 @@
                             "Japanese" : "中身を抜き取る",
                             "Swedish" : "Tom",
                             "Spanish (Spain)" : "Vaciar",
-                            "Turkish" : "Boşaltmak",
+                            "Turkish" : "Boşalt",
                             "Dutch" : "Leeg afvoeren",
                             "Finnish" : "Tyhjennä",
                             "Polish" : "Opróżni",
@@ -58,7 +60,7 @@
                             "Japanese" : "抜き取っています...",
                             "Swedish" : "Tömning...",
                             "Spanish (Spain)" : "Vaciando...",
-                            "Turkish" : "Boşaltma...",
+                            "Turkish" : "Boşaltılıyor",
                             "Dutch" : "Aftappen...",
                             "Finnish" : "Tyhjennetään...",
                             "Polish" : "Opróznianie...",
