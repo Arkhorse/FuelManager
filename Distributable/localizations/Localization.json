@@ -6,7 +6,8 @@
         "Japanese": "ガソリン缶",
         "Polish": "Kanister",
         "Traditional Chinese": "汽油罐",
-        "Simplified Chinese": "汽油罐"
+        "Simplified Chinese": "汽油罐",
+        "Turkish" : "Yakıt Bidonu"
     },
     "GAMEPLAY_GasCanDescription": {
         "English": "An old gas can. Holds kerosene just as well.",
@@ -15,7 +16,8 @@
         "Japanese": "古いガソリン携行缶。石油を入れるのに適している。",
         "Polish": "Stary kanister. Odpowiedni do przechowywania paliwa.",
         "Traditional Chinese": "一個老舊的汽油罐，也可拿來裝燃油。",
-        "Simplified Chinese": "一个老旧的汽油罐，也可拿来装燃油。"
+        "Simplified Chinese": "一个老旧的汽油罐，也可拿来装燃油。",
+        "Turkish" : "Eski bir yakıt bidonu. Gazyağı da tutar."
     },
     "GAMEPLAY_BFM_NoFuelCapacityAvailable": {
         "English": "No containers with remaining capacity available",
@@ -40,7 +42,7 @@
         "Japanese": "中身を抜き取る",
         "Swedish": "Tom",
         "Spanish (Spain)": "Vaciar",
-        "Turkish": "Boşaltmak",
+        "Turkish": "Boşalt",
         "Dutch": "Leeg afvoeren",
         "Finnish": "Tyhjennä",
         "Polish": "Opróżni",
@@ -55,7 +57,7 @@
         "Japanese": "抜き取っています...",
         "Swedish": "Tömning...",
         "Spanish (Spain)": "Vaciando...",
-        "Turkish": "Boşaltma...",
+        "Turkish": "Boşaltılıyor...",
         "Dutch": "Aftappen...",
         "Finnish": "Tyhjennetään...",
         "Polish": "Opróznianie...",
@@ -70,7 +72,7 @@
         "Japanese": "失われました",
         "Swedish": "Förlorat",
         "Spanish (Spain)": "Perdidos",
-        "Turkish": "Boşa harcandı",
+        "Turkish": "Kayboldu",
         "Dutch": "Verspild",
         "Finnish": "Menetetty",
         "Polish": "Stracone",
