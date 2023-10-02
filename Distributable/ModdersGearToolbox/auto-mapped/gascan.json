@@ -34,11 +34,11 @@
     },
     "ModMillableBehaviour": {
         "RepairDurationMinutes"             : 15,
-        "RepairRequiredGear"                : ["GEAR_ScrapPlastic"],
+        "RepairRequiredGear"                : ["GEAR_RecycledPlastic"],
         "RepairRequiredGearUnits"           : [2],
         "CanRestoreFromWornOut"             : true,
         "RecoveryDurationMinutes"           : 60,
-        "RestoreRequiredGear"               : ["GEAR_ScrapPlastic"],
+        "RestoreRequiredGear"               : ["GEAR_RecycledPlastic"],
         "RestoreRequiredGearUnits"          : [6],
         "Skill"                             : "None"
     },
@@ -47,7 +47,7 @@
         "Minutes"                           : 10,
         "Condition"                         : 25,
         "RequiredTools"                     : ["GEAR_HighQualityTools", "GEAR_SimpleTools"],
-        "MaterialNames"                     : ["GEAR_ScrapPlastic"],
+        "MaterialNames"                     : ["GEAR_RecycledPlastic"],
         "MaterialCounts"                    : [1]
     }
 }
