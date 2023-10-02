@@ -1,4 +1,9 @@
 # FuelManager
+| Version | Downloads | License |
+| :---: | :---: | :---: |
+| ![GitHub release (with filter)](https://img.shields.io/github/v/release/Arkhorse/FuelManager) | ![GitHub all releases](https://img.shields.io/github/downloads/Arkhorse/FuelManager/total) | ![GitHub](https://img.shields.io/github/license/Arkhorse/FuelManager) |
+
+
 STATUS: Mostly Working
 
 An updated version of [Better-Fuel-Management](https://github.com/ds5678/Better-Fuel-Management) by [ds5678](https://github.com/ds5678).
@@ -24,10 +29,10 @@ This is a mod for **The Long Dark** by Hinterland Studio, Inc.
 * [KeyboardUtilities](https://github.com/ds5678/KeyboardUtilities/releases/latest)
 * [LocalizationUtilities](https://github.com/dommrogers/LocalizationUtilities/releases/latest)
 * [CraftingRevisions](https://github.com/dommrogers/CraftingRevisions/release/latest)
-* [RadialMenuUtilities](https://github.com/Arkhorse/RadialMenuUtilities/releases/latest)
 * [ModSettings](https://github.com/zeobviouslyfakeacc/ModSettings/releases/latest)
 * [GearSpawner](https://github.com/dommrogers/GearSpawner/releases/latest)
 * [ModComponent](https://github.com/dommrogers/ModComponent)
+<!--* [RadialMenuUtilities](https://github.com/Arkhorse/RadialMenuUtilities/releases/latest)-->
 
 ### Install Steps
 * Download `FuelManager.dll` and `FuelManager.modcomponent` from the [releases page](https://github.com/Arkhorse/FuelManager/releases)
