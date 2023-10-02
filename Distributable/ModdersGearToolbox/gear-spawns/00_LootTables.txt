@@ -1,0 +1,9 @@
+tag=FuelManager
+loottable=LootTableLockerLocked
+item=GEAR_GasCan w=1
+loottable=LootTableToolChestDrawer
+item=GEAR_GasCan w=1
+loottable=LootTableSafe
+item=GEAR_GasCan w=1
+loottable=LootTableVehicleTrunk
+item=GEAR_GasCan w=1

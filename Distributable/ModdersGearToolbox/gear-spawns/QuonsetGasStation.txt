@@ -1,0 +1,4 @@
+scene=QuonsetGasStation
+item=GEAR_GasCan p=-4.5273,0.3200,1.2174 r=0.0000,268.4207,0.0000 c=100
+item=GEAR_GasCan p=-4.4705,0.3200,2.3977 r=0.0000,269.4297,0.0000 c=10
+item=GEAR_GasCan p=-2.0330,0.0000,7.7839 r=0.0000,359.6449,0.0000 c=10
