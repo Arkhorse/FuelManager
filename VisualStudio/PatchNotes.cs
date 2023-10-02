@@ -119,6 +119,15 @@
                     "Disable RMU"
                 })
             );
+            ChangeNotes.Add(
+                new Patch(
+                    new Version(1, 2, 7),
+                new string[]
+                {
+                    "Merge PR by Elderly-Emre",
+                    "Add Modders Gear toolbox optional version"
+                })
+            );
         }
 
         public static void PrintChangeLog()
