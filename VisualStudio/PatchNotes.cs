@@ -116,6 +116,16 @@ namespace FuelManager
                     "Add Modders Gear toolbox optional version"
                 })
             );
+            ChangeNotes.Add(
+                new Patch(
+                new Version(1,2,8),
+                new List<string>
+                {
+                    "Added the ability to refuel the lamp using a hotkey",
+                    "Rewrote most of the logic for refueling and draining to permit the above and remove extra logging no longer required",
+                    "Refactor of mod, including Main class rename, Logging class update, SceneUtilities class update, ect. See Github commits for full details on this"
+                })
+            );
         }
 
         public static void PrintChangeLog()

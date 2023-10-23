@@ -5,6 +5,8 @@ namespace FuelManager
     internal class Main : MelonMod
     {
         public static GearItem? Target { get; set; }
+        public static float MIN_LITERS { get; } = 0.001f;
+        public static string REFUEL_AUDIO { get; } = "Play_SndActionRefuelLantern";
 
         public static LiquidType GetKerosene()
         {
