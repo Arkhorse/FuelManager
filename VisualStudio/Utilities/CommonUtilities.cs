@@ -23,25 +23,25 @@ namespace FuelManager
             return name3.Trim();
         }
 
-        [return: NotNullIfNotNull("component")]
+        [return: NotNullIfNotNull(nameof(component))]
         public static T? GetComponentSafe<T>(this Component? component) where T : Component
         {
             return component == null ? default : GetComponentSafe<T>(component.gameObject);
         }
 
-        [return: NotNullIfNotNull("gameObject")]
+        [return: NotNullIfNotNull(nameof(gameObject))]
         public static T? GetComponentSafe<T>(this GameObject? gameObject) where T : Component
         {
             return gameObject == null ? default : gameObject.GetComponent<T>();
         }
 
-        [return: NotNullIfNotNull("component")]
+        [return: NotNullIfNotNull(nameof(component))]
         public static T? GetOrCreateComponent<T>(this Component? component) where T : Component
         {
             return component == null ? default : GetOrCreateComponent<T>(component.gameObject);
         }
 
-        [return: NotNullIfNotNull("gameObject")]
+        [return: NotNullIfNotNull(nameof(gameObject))]
         public static T? GetOrCreateComponent<T>(this GameObject? gameObject) where T : Component
         {
             if (gameObject == null) return default;
@@ -50,7 +50,7 @@ namespace FuelManager
             return result;
         }
 
-        [return: NotNullIfNotNull("component")]
+        [return: NotNullIfNotNull(nameof(component))]
         public static GameObject? GetGameObject(this Component? component)
         {
             try
