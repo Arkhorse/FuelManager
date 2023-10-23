@@ -2,7 +2,7 @@
 
 namespace FuelManager
 {
-    internal class FuelManager : MelonMod
+    internal class Main : MelonMod
     {
         public static GearItem? Target { get; set; }
         public static LiquidType GetKerosene()

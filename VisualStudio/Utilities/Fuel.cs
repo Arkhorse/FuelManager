@@ -51,7 +51,7 @@ namespace FuelManager
                 if (gearItem == null || gearItem == excludeItem) continue;
 
                 LiquidItem liquidItem = gearItem.m_LiquidItem;
-                if (liquidItem == null || liquidItem.m_LiquidType != FuelManager.GetKerosene()) continue;
+                if (liquidItem == null || liquidItem.m_LiquidType != Main.GetKerosene()) continue;
 
                 float previousLiters = liquidItem.m_LiquidLiters;
                 liquidItem.m_LiquidLiters = Mathf.Clamp(liquidItem.m_LiquidLiters + remaining, 0f, liquidItem.m_LiquidCapacityLiters);
@@ -75,7 +75,7 @@ namespace FuelManager
         {
             if (gearItem == null) return false;
             if (!gearItem.m_LiquidItem) return false;
-            return gearItem.m_LiquidItem.m_LiquidType == FuelManager.GetKerosene();
+            return gearItem.m_LiquidItem.m_LiquidType == Main.GetKerosene();
         }
 
         /// <summary>
@@ -348,8 +348,8 @@ namespace FuelManager
             float capacityLiters            = GetIndividualCapacityLiters(gearItem);
             float totalCurrent              = GetTotalCurrentLiters(gearItem);
 
-            float totalInventoryFuel        = GameManager.GetPlayerManagerComponent().GetCapacityLiters(FuelManager.GetKerosene());
-            float totalInventoryCapacity    = GameManager.GetPlayerManagerComponent().GetTotalLiters(FuelManager.GetKerosene());
+            float totalInventoryFuel        = GameManager.GetPlayerManagerComponent().GetCapacityLiters(Main.GetKerosene());
+            float totalInventoryCapacity    = GameManager.GetPlayerManagerComponent().GetTotalLiters(Main.GetKerosene());
 
             if (Settings.Instance.ExtraLogging)
             {
@@ -372,7 +372,7 @@ namespace FuelManager
                 return;
             }
 
-            FuelManager.Target = gearItem;
+            Main.Target = gearItem;
 
             GameAudioManager.PlayGuiConfirm();
             InterfaceManager.GetPanel<Panel_GenericProgressBar>().Launch(
@@ -393,7 +393,7 @@ namespace FuelManager
 
         private static void OnDrainFinished(bool success, bool playerCancel, float progress)
         {
-            GearItem? Target = FuelManager.Target;
+            GearItem? Target = Main.Target;
 
             if (Target != null && IsFuelItem(Target))
             {
@@ -408,7 +408,7 @@ namespace FuelManager
 
         private static void OnRefuelFinished(bool success, bool playerCancel, float progress)
         {
-            GearItem? Target = FuelManager.Target;
+            GearItem? Target = Main.Target;
 
             if (Target != null && IsFuelItem(Target))
             {

@@ -7,7 +7,7 @@ namespace FuelManager
     {
         private static void PostFix(PlayerManager __instance, float litersToAdd, LiquidType liquidType, ref float __result)
         {
-            if (__instance != null && liquidType == FuelManager.GetKerosene() && __result != litersToAdd)
+            if (__instance != null && liquidType == Main.GetKerosene() && __result != litersToAdd)
             {
                 MessageUtils.SendLostMessageDelayed(litersToAdd - __result);
 
