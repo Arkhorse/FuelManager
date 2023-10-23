@@ -5,7 +5,9 @@ namespace FuelManager
     public class Patch
     {
 #nullable disable
+#pragma warning disable IDE1006 // Naming Styles
         [JsonInclude]
+        [JsonPropertyName("Version")]
         public Version m_Version { get; set; }
         [JsonInclude]
         public List<string> Changes { get; set; }
@@ -23,6 +25,7 @@ namespace FuelManager
             this.Changes = Changes;
         }
 #nullable enable
+#pragma warning restore IDE1006 // Naming Styles
     }
 
     public class PatchNotes
@@ -30,12 +33,12 @@ namespace FuelManager
         /// <summary>
         /// This is used in console commands to print the change logs.
         /// </summary>
-        public static List<Patch> ChangeNotes = new();
+        public static List<Patch> ChangeNotes { get; set; } = new();
 
         internal static void CreateChangelog()
         {
             ChangeNotes.Add(
-            new Patch(
+                new Patch(
                 new Version(1, 2, 0),
                 new List<string>
                 {
@@ -49,7 +52,7 @@ namespace FuelManager
                 })
             );
             ChangeNotes.Add(
-            new Patch(
+                new Patch(
                 new Version(1, 2, 1),
                 new List<string>
                 {
@@ -57,7 +60,7 @@ namespace FuelManager
                 })
             );
             ChangeNotes.Add(
-            new Patch(
+                new Patch(
                 new Version(1, 2, 2),
                 new List<string>
                 {
@@ -65,7 +68,7 @@ namespace FuelManager
                 })
             );
             ChangeNotes.Add(
-            new Patch(
+                new Patch(
                 new Version(1,2,3),
                 new List<string>
                 {
@@ -73,7 +76,7 @@ namespace FuelManager
                 })
             );
             ChangeNotes.Add(
-            new Patch(
+                new Patch(
                 new Version(1,2,4),
                 new List<string>
                 {
@@ -87,7 +90,7 @@ namespace FuelManager
             );
             ChangeNotes.Add(
                 new Patch(
-                    new Version(1, 2, 5),
+                new Version(1, 2, 5),
                 new List<string>
                 {
                     "Game Update 2.23 on 2023/09/26",
@@ -97,7 +100,7 @@ namespace FuelManager
             );
             ChangeNotes.Add(
                 new Patch(
-                    new Version(1, 2, 6),
+                new Version(1, 2, 6),
                 new List<string>
                 {
                     "Add last RMU conditional",
@@ -106,7 +109,7 @@ namespace FuelManager
             );
             ChangeNotes.Add(
                 new Patch(
-                    new Version(1, 2, 7),
+                new Version(1, 2, 7),
                 new List<string>
                 {
                     "Merge PR by Elderly-Emre",
