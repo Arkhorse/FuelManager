@@ -9,11 +9,11 @@
             {
                 if (ButtonUtils.IsSelected(__instance.m_Button_Unload))
                 {
-                    FuelUtils.Drain(__instance.m_GearItem);
+                    FuelUtils.Drain(__instance.m_GearItem, __instance);
                 }
                 else
                 {
-                    FuelUtils.Refuel(__instance.m_GearItem);
+                    FuelUtils.Refuel(__instance.m_GearItem, true, __instance);
                 }
                 return false;
             }
