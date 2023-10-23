@@ -7,7 +7,7 @@
         {
             if (__instance != null && FuelUtils.IsFuelItem(__instance.m_GearItem))
             {
-                FuelUtils.Drain(__instance.m_GearItem);
+                FuelUtils.Drain(__instance.m_GearItem, __instance);
             }
             return true;
         }
