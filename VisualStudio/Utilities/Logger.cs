@@ -16,28 +16,5 @@ namespace FuelManager
             }
             LogSeperator();
         }
-
-        public static void LogWithLevel(LoggingLevel level, string message, params object[] parameters)
-        {
-            switch (level)
-            {
-                case LoggingLevel.None:
-                    break;
-                case LoggingLevel.Info:
-                    break;
-                case LoggingLevel.Debug:
-                    break;
-                case LoggingLevel.Warn:
-                    break;
-                case LoggingLevel.Error:
-                    break;
-                case LoggingLevel.Fatal:
-                    break;
-                case LoggingLevel.Trace:
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
-        }
     }
 }

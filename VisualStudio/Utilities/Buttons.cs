@@ -5,7 +5,7 @@
         internal static Panel_Inventory_Examine _Panel_Inventory_Examine = new();
         internal static Vector3 GetBottomPosition(params Component[] components)
         {
-            Vector3 result = new Vector3(0, 1000, 0);
+            Vector3 result = new(0, 1000, 0);
 
             foreach (Component eachComponent in components)
             {

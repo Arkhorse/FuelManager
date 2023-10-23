@@ -42,19 +42,19 @@ namespace FuelManager
                 GearItem gearItem = inventory.m_Items[i];
                 if (gearItem == null) continue;
 
-                if (ItemUtils.NormalizeName(gearItem.name) == "GEAR_LampFuel")
+                if (CommonUtilities.NormalizeName(gearItem.name) == "GEAR_LampFuel")
                 {
                     if (gearItem.GetComponent<Harvest>()) GearItem_LampFuel_Harvest = true;
                     if (gearItem.GetComponent<Repairable>()) GearItem_LampFuel_Repairable = true;
                     continue;
                 }
-                else if (ItemUtils.NormalizeName(gearItem.name) == "GEAR_LampFuelFull")
+                else if (CommonUtilities.NormalizeName(gearItem.name) == "GEAR_LampFuelFull")
                 {
                     if (gearItem.GetComponent<Harvest>()) GearItem_LampFuelFull_Harvest = true;
                     if (gearItem.GetComponent<Repairable>()) GearItem_LampFuelFull_Repairable = true;
                     continue;
                 }
-                else if (ItemUtils.NormalizeName(gearItem.name) == "GEAR_JerrycanRusty")
+                else if (CommonUtilities.NormalizeName(gearItem.name) == "GEAR_JerrycanRusty")
                 {
                     if (gearItem.GetComponent<Harvest>()) GearItem_JerryCan_Harvest = true;
                     if (gearItem.GetComponent<Repairable>()) GearItem_JerryCan_Repairable = true;
@@ -90,19 +90,19 @@ namespace FuelManager
 
                 if (gi is null) continue;
 
-                if (ItemUtils.NormalizeName(gi.name) == "GEAR_JerrycanRusty")
+                if (CommonUtilities.NormalizeName(gi.name) == "GEAR_JerrycanRusty")
                 {
                     FuelItemAPI.RefreshRepairComponent(gi);
                     FuelItemAPI.RefreshHarvestComponent(gi);
                     continue;
                 }
-                if (ItemUtils.NormalizeName(gi.name) == "GEAR_LampFuel")
+                if (CommonUtilities.NormalizeName(gi.name) == "GEAR_LampFuel")
                 {
                     FuelItemAPI.RefreshRepairComponent(gi);
                     FuelItemAPI.RefreshHarvestComponent(gi);
                     continue;
                 }
-                if (ItemUtils.NormalizeName(gi.name) == "GEAR_LampFuelFull")
+                if (CommonUtilities.NormalizeName(gi.name) == "GEAR_LampFuelFull")
                 {
                     FuelItemAPI.RefreshRepairComponent(gi);
                     FuelItemAPI.RefreshHarvestComponent(gi);

@@ -1,21 +1,26 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Il2CppSystem.Text.RegularExpressions;
 
 namespace FuelManager
 {
-    public static class Utilities
+    public static class CommonUtilities
     {
-        public static GearItem GetGearItemPrefab(string name)
-        {
-            return GearItem.LoadGearItemPrefab(name);
-        }
-        public static ToolsItem GetToolItemPrefab(string name)
-        {
-            return GearItem.LoadGearItemPrefab(name).GetComponent<ToolsItem>();
-        }
+        [return: NotNullIfNotNull(nameof(name))]
+        public static GearItem GetGearItemPrefab(string name) => GearItem.LoadGearItemPrefab(name);
+
+        /// <summary>
+        /// Normalizes the name given to remove extra bits using regex for most of the changes
+        /// </summary>
+        /// <param name="name">The name of the thing to normalize</param>
+        /// <returns>Normalized name without <c>(Clone)</c> or any numbers appended</returns>
+        [return: NotNullIfNotNull(nameof(name))]
         public static string? NormalizeName(string name)
         {
-            if (name == null) return null;
-            else return name.Replace("(Clone)", "").Trim();
+            string name0 = Regex.Replace(name, @"(?:\(\d{0,}\))", string.Empty);
+            string name1 = Regex.Replace(name0, @"(?:\s\d{0,})", string.Empty);
+            string name2 = name1.Replace("(Clone)", string.Empty, StringComparison.InvariantCultureIgnoreCase);
+            string name3 = name2.Replace("\0", string.Empty);
+            return name3.Trim();
         }
 
         [return: NotNullIfNotNull("component")]
@@ -41,10 +46,7 @@ namespace FuelManager
         {
             if (gameObject == null) return default;
 
-            T? result = GetComponentSafe<T>(gameObject);
-
-            if (result == null) result = gameObject.AddComponent<T>();
-
+            T? result = GetComponentSafe<T>(gameObject) ?? gameObject.AddComponent<T>();
             return result;
         }
 
@@ -55,33 +57,20 @@ namespace FuelManager
             {
                 return component == null ? default : component.gameObject;
             }
-#if DEBUG
             catch (Exception exception)
             {
-                Logger.LogError($"Returning null since this could not obtain a Game Object from the component. Stack trace:\n{exception.Message}", Color.red);
+                Logger.LogError($"Returning null since this could not obtain a GameObject from the component. Stack trace:\n{exception.Message}");
             }
-#endif
-#if !DEBUG
-            catch { }
-#endif
+
             return null;
         }
 
         public static T GetItem<T>(string name, string? reference = null) where T : Component
         {
-            GameObject? gameObject = AssetBundleUtils.LoadAsset<GameObject>(name);
-            if (gameObject == null)
-            {
-                throw new ArgumentException("Could not load '" + name + "'" + (reference != null ? " referenced by '" + reference + "'" : "") + ".");
-            }
-
+            GameObject? gameObject = AssetBundleUtils.LoadAsset<GameObject>(name) ?? throw new ArgumentException("Could not load '" + name + "'" + (reference != null ? " referenced by '" + reference + "'" : "") + ".");
             T targetType = GetComponentSafe<T>(gameObject);
-            if (targetType == null)
-            {
-                throw new ArgumentException("'" + name + "'" + (reference != null ? " referenced by '" + reference + "'" : "") + " is not a '" + typeof(T).Name + "'.");
-            }
 
-            return targetType;
+            return targetType ?? throw new ArgumentException("'" + name + "'" + (reference != null ? " referenced by '" + reference + "'" : "") + " is not a '" + typeof(T).Name + "'.");
         }
 
         public static T[] GetItems<T>(string[] names, string? reference = null) where T : Component
