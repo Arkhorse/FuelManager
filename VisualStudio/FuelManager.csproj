@@ -1,47 +1,30 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-	
+﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<!-- DO NOT CHANGE ANYTHING BETWEEN THESE (unless you know 100% what you are changing)-->
+	<!-- Further info: This defines critical project details, like the net version, C# language version, null enable and do not generate assembly info (we need a custom one) -->
 	<PropertyGroup>
-		<TheLongDarkPath>O:\SteamLibrary\steamapps\common\TheLongDark</TheLongDarkPath>
-		<Title>Fuel Manager</Title>
-		<Authors>The Illusion</Authors>
-		<Company>null</Company>
-		<Description>Adds settings to manage fuel</Description>
-		<Copyright>MIT License</Copyright>
-		<PackageProjectUrl></PackageProjectUrl>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<RepositoryUrl>https://github.com/Arkhorse/FuelManager</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageTags>TheLongDark</PackageTags>
-		<NeutralLanguage>en</NeutralLanguage>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>Latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<!-- Debug is useless for a mod -->
+		<DebugType>none</DebugType>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
+	<!-- DO NOT CHANGE ANYTHING BETWEEN THESE -->
 
-  <PropertyGroup>
-	  <TargetFramework>net6.0</TargetFramework>
-	  <ImplicitUsings>enable</ImplicitUsings>
-	  <Nullable>enable</Nullable>
-	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<PropertyGroup>
+		<!-- This should point to wherever your games primary EXE is -->
+		<TheLongDarkPath>O:\SteamLibrary\steamapps\common\TheLongDark</TheLongDarkPath>
+		<ReleaseFolderPath>P:\Modding\The Long Dark\MyMods\FuelManager\Release</ReleaseFolderPath>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.23.0" />
 		<PackageReference Include="STBlade.Modding.TLD.ModSettings" Version="1.9.0" />
 		<PackageReference Include="STBlade.Modding.TLD.GearSpawner" Version="2.3.1" />
 		<PackageReference Include="STBlade.Modding.TLD.ModComponent" Version="6.0.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Include="RadialMenuUtilities">
-	    <HintPath>P:\Modding\The Long Dark\!! Libraries\RadialMenuUtilities.dll</HintPath>
-		<Private>false</Private>
-	  </Reference>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -53,24 +36,12 @@
 		<Using Include="ModSettings" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Update="README.md">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	</ItemGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <DebugType>embedded</DebugType>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <DebugType>embedded</DebugType>
-	</PropertyGroup>
-
+	<!-- This is a build event. It will copy your dll to the currently defined TheLongDarkPath's Mods folder -->
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="xcopy /y &quot;$(BaseOutputPath)\$(Configuration)\net6.0\$(AssemblyName).dll&quot; &quot;$(TheLongDarkPath)\Mods&quot;" />
-		<Exec Command="xcopy /y &quot;$(BaseOutputPath)\$(Configuration)\net6.0\$(AssemblyName).dll&quot; &quot;P:\Modding\The Long Dark\MyMods\FuelManager\Release&quot;" />
+		<!-- This copies the mods files to the games mod dir -->
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TheLongDarkPath)/Mods" />
+		<!-- This copies the mods files to a designated release folder. Speeds up finding the dll after a build -->
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ReleaseFolderPath)" />
 	</Target>
 	
 </Project>
