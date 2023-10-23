@@ -45,8 +45,8 @@ namespace FuelManager
                 // GAMEPLAY_FM_Extinguish_Failed
                 HUDMessage.AddMessage("Not Enough Water", false, true);
                 GameAudioManager.PlayGUIError();
-                Logger.Log($"Amount of clean water: {cleanWaterSupply.m_VolumeInLiters}");
-                Logger.Log($"Amount of dirty water: {dirtyWaterSupply.m_VolumeInLiters}, enabled: {Settings.Instance.UseNonPotableWaterSupply}");
+                Logging.Log($"Amount of clean water: {cleanWaterSupply.m_VolumeInLiters}");
+                Logging.Log($"Amount of dirty water: {dirtyWaterSupply.m_VolumeInLiters}, enabled: {Settings.Instance.UseNonPotableWaterSupply}");
             }
         }
 
@@ -71,7 +71,7 @@ namespace FuelManager
             }
             else
             {
-                Logger.LogError("Fire not found");
+                Logging.LogError("Fire not found");
             }
         }
     }

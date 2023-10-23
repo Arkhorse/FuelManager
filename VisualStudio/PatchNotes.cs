@@ -122,12 +122,12 @@ namespace FuelManager
         {
             for (int i = 0; i < ChangeNotes.Count; i++)
             {
-                Logger.Log($"Version: {ChangeNotes[i].Instance.m_Version}");
-                Logger.Log("Changes:");
+                Logging.Log($"Version: {ChangeNotes[i].Instance.m_Version}");
+                Logging.Log("Changes:");
 
                 for (int v = 0; v < ChangeNotes[i].Instance.Changes.Count; v++)
                 {
-                    Logger.Log($"\t{ChangeNotes[i].Instance.Changes[v]}");
+                    Logging.Log($"\t{ChangeNotes[i].Instance.Changes[v]}");
                 }
             }
         }

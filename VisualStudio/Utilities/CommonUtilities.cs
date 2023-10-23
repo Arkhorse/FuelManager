@@ -59,7 +59,7 @@ namespace FuelManager
             }
             catch (Exception exception)
             {
-                Logger.LogError($"Returning null since this could not obtain a GameObject from the component. Stack trace:\n{exception.Message}");
+                Logging.LogError($"Returning null since this could not obtain a GameObject from the component. Stack trace:\n{exception.Message}");
             }
 
             return null;

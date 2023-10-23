@@ -8,7 +8,7 @@
         {
             if (gi is null)
             {
-                Logger.LogWarning($"Requested GearItem is null");
+                Logging.LogWarning($"Requested GearItem is null");
                 return;
             }
 
@@ -16,7 +16,7 @@
 
             if (repair is null)
             {
-                Logger.LogWarning($"Requested GearItem {gi.name} does not have the Repairable Component");
+                Logging.LogWarning($"Requested GearItem {gi.name} does not have the Repairable Component");
                 return;
             }
             else
@@ -63,8 +63,8 @@
             }
             catch (Exception e)
             {
-                Logger.LogError("Error attempting to add Repairable Component");
-                Logger.Log($"Reason: {e}");
+                Logging.LogError("Error attempting to add Repairable Component");
+                Logging.Log($"Reason: {e}");
             }
         }
         #endregion
@@ -73,7 +73,7 @@
         {
             if (gi is null)
             {
-                Logger.LogWarning($"Requested GearItem is null");
+                Logging.LogWarning($"Requested GearItem is null");
                 return;
             }
 
@@ -81,7 +81,7 @@
 
             if (harvest is null)
             {
-                Logger.LogWarning($"Requested GearItem {gi.name} does not have the Repairable Component");
+                Logging.LogWarning($"Requested GearItem {gi.name} does not have the Repairable Component");
                 return;
             }
             else
@@ -127,8 +127,8 @@
             }
             catch (Exception e)
             {
-                Logger.LogError("Error while attempting to add Harvest Component");
-                Logger.Log($"Reason: {e}");
+                Logging.LogError("Error while attempting to add Harvest Component");
+                Logging.Log($"Reason: {e}");
             }
 
         }
@@ -189,8 +189,8 @@
             }
             catch (Exception e)
             {
-                Logger.LogError($"Could not add FuelSourceItem to {gi.name}");
-                Logger.Log($"Reason: {e}");
+                Logging.LogError($"Could not add FuelSourceItem to {gi.name}");
+                Logging.Log($"Reason: {e}");
             }
         }
         #endregion
@@ -209,10 +209,10 @@
             catch (Exception e)
             {
 #if DEBUG
-                Logger.LogSeperator();
-                Logger.LogError($"Could not Instantiate item {gi.name}");
-                Logger.Log($"Reason: {e}");
-                Logger.LogSeperator();
+                Logging.LogSeperator();
+                Logging.LogError($"Could not Instantiate item {gi.name}");
+                Logging.Log($"Reason: {e}");
+                Logging.LogSeperator();
 #endif
             }
 
@@ -233,11 +233,11 @@
             catch (Exception e)
             {
 #if DEBUG
-                Logger.LogSeperator();
-                Logger.LogError("Attempting to get the Prefab failed");
-                Logger.Log($"GearItem: {gi.name}");
-                Logger.Log($"Reason: {e}");
-                Logger.LogSeperator();
+                Logging.LogSeperator();
+                Logging.LogError("Attempting to get the Prefab failed");
+                Logging.Log($"GearItem: {gi.name}");
+                Logging.Log($"Reason: {e}");
+                Logging.LogSeperator();
 #endif
 
                 Target = gi.gameObject;

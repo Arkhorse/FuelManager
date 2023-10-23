@@ -29,7 +29,7 @@
             catch (NullReferenceException)
             {
 #if DEBUG
-                Logger.LogError("Item is not proper, Panel_Inventory_Examine_RefreshRefuelPanel");
+                Logging.LogError("Item is not proper, Panel_Inventory_Examine_RefreshRefuelPanel");
 #endif
             }
 
@@ -41,9 +41,9 @@
 
             __instance.UpdateWeightAndConditionLabels();
 #if DEBUG
-            Logger.Log($"currentLiters: {currentLiters}, capacityLiters: {capacityLiters}, totalCurrent: {totalCurrent}, totalCapacity: {totalCapacity}, fuelIsAvailable: {fuelIsAvailable}, flag: {flag}");
-            Logger.Log($"__instance.m_LanternFuelAmountLabel.text: {__instance.m_LanternFuelAmountLabel.text}");
-            Logger.Log($"__instance.m_FuelSupplyAmountLabel.text: {__instance.m_FuelSupplyAmountLabel.text}");
+            Logging.Log($"currentLiters: {currentLiters}, capacityLiters: {capacityLiters}, totalCurrent: {totalCurrent}, totalCapacity: {totalCapacity}, fuelIsAvailable: {fuelIsAvailable}, flag: {flag}");
+            Logging.Log($"__instance.m_LanternFuelAmountLabel.text: {__instance.m_LanternFuelAmountLabel.text}");
+            Logging.Log($"__instance.m_FuelSupplyAmountLabel.text: {__instance.m_FuelSupplyAmountLabel.text}");
 #endif
             return false; // MUST BE FALSE
         }

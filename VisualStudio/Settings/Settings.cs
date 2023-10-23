@@ -129,13 +129,13 @@ namespace FuelManager
                 if (RadialOverride) return;
                 else
                 {
-                    Logger.LogError("MissingMethodException: Either your missing RadialMenuUtilies or your version of this mod or RMU is outdated", Color.red);
+                    Logging.LogError("MissingMethodException: Either your missing RadialMenuUtilies or your version of this mod or RMU is outdated", Color.red);
                     throw;
                 }
             }
             catch
             {
-                Logger.LogError($"Threw exception while attempting to create new radial menu");
+                Logging.LogError($"Threw exception while attempting to create new radial menu");
                 throw;
             }
         }

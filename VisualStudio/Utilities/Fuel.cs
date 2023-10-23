@@ -281,8 +281,8 @@ namespace FuelManager
 
             if (Settings.Instance.ExtraLogging)
             {
-                Logger.Log($"currentLiters: {currentLiters}, totalCurrent {totalCurrent}, totalCapacity: {totalCapacity}");
-                Logger.Log($"item is {gearItem.name}");
+                Logging.Log($"currentLiters: {currentLiters}, totalCurrent {totalCurrent}, totalCapacity: {totalCapacity}");
+                Logging.Log($"item is {gearItem.name}");
             }
 
             if (currentLiters < MIN_LITERS)
@@ -353,9 +353,9 @@ namespace FuelManager
 
             if (Settings.Instance.ExtraLogging)
             {
-                Logger.Log($"currentLiters: {currentLiters}, capacityLiters: {capacityLiters}, totalCurrent: {totalCurrent}");
-                Logger.Log($"item is {gearItem.name}, GetComponent is {gearItem.name}");
-                Logger.Log($"panel item is {gearItem.name}, panel item GetComponent is {gearItem.name}");
+                Logging.Log($"currentLiters: {currentLiters}, capacityLiters: {capacityLiters}, totalCurrent: {totalCurrent}");
+                Logging.Log($"item is {gearItem.name}, GetComponent is {gearItem.name}");
+                Logging.Log($"panel item is {gearItem.name}, panel item GetComponent is {gearItem.name}");
             }
 
             if (Utils.Approximately(currentLiters, capacityLiters, MIN_LITERS))

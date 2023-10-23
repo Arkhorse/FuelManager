@@ -24,13 +24,13 @@ namespace FuelManager
         {
             if (GameManager.IsMainMenuActive())
             {
-                Logger.LogWarning("Cant print test info while in the Main Menu");
+                Logging.LogWarning("Cant print test info while in the Main Menu");
                 return;
             }
 
             if (!GameManager.GetInventoryComponent())
             {
-                Logger.LogWarning("Cant print test info as the InventoryComponent is not yet present");
+                Logging.LogWarning("Cant print test info as the InventoryComponent is not yet present");
                 return;
             }
 
@@ -62,7 +62,7 @@ namespace FuelManager
                 }
                 else
                 {
-                    Logger.LogError("Inventory does not contain required items: GEAR_LampFuel, GEAR_LampFuelFull and GEAR_JerrycanRusty");
+                    Logging.LogError("Inventory does not contain required items: GEAR_LampFuel, GEAR_LampFuelFull and GEAR_JerrycanRusty");
                     break;
                 }
             }
@@ -77,7 +77,7 @@ namespace FuelManager
                 $"Jerry Can Repairable:         {GearItem_JerryCan_Repairable}"
             };
 
-            Logger.LogUpdate(UpdateTestResults);
+            Logging.LogUpdate(UpdateTestResults);
         }
 
         private static void UpdateAllGearItems()
