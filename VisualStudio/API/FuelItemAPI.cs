@@ -21,7 +21,9 @@
             }
             else
             {
-                repair = null;
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
+                repair = null; // Want this to be null in order to remove the component already assigned
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
             }
         }
 
@@ -84,7 +86,9 @@
             }
             else
             {
-                harvest = null;
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
+                harvest = null; // Want this to be null in order to remove the component already assigned
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
             }
         }
 
