@@ -44,7 +44,7 @@
 
             if (Target.GetComponent<Repairable>() is not null) return;
 
-            Repairable repairable = ItemUtils.GetOrCreateComponent<Repairable>(Target);
+            Repairable repairable = CommonUtilities.GetOrCreateComponent<Repairable>(Target);
 
             try
             {
@@ -52,10 +52,10 @@
                 repairable.m_DurationMinutes        = duration;
                 repairable.m_ConditionIncrease      = ConditionIncrease;
 
-                repairable.m_RequiredGear           = ItemUtils.GetItems<GearItem>(requiredGear);
+                repairable.m_RequiredGear           = CommonUtilities.GetItems<GearItem>(requiredGear);
                 repairable.m_RequiredGearUnits      = repairUnits;
 
-                repairable.m_RepairToolChoices      = ItemUtils.GetItems<ToolsItem>(extra);
+                repairable.m_RepairToolChoices      = CommonUtilities.GetItems<ToolsItem>(extra);
                 repairable.m_RequiresToolToRepair   = requiresTools;
                 repairable.m_NeverFail              = NeverFail;
             }
@@ -106,18 +106,18 @@
 
             if (Target.GetComponent<Harvest>() is not null) return;
 
-            Harvest harvest = ItemUtils.GetOrCreateComponent<Harvest>(Target);
+            Harvest harvest = CommonUtilities.GetOrCreateComponent<Harvest>(Target);
 
             try
             {
                 harvest.m_Audio = audio;
                 harvest.m_DurationMinutes = duration;
 
-                harvest.m_YieldGear = ItemUtils.GetItems<GearItem>(YieldGear);
+                harvest.m_YieldGear = CommonUtilities.GetItems<GearItem>(YieldGear);
                 harvest.m_YieldGearUnits = YieldUnits;
 
                 harvest.m_AppliedSkillType = skillType;
-                harvest.m_RequiredTools = ItemUtils.GetItems<ToolsItem>(RequiredTools);
+                harvest.m_RequiredTools = CommonUtilities.GetItems<ToolsItem>(RequiredTools);
 
                 harvest.m_GunpowderYield = 0f;
             }
@@ -163,7 +163,7 @@
 
             if (Target is null) return;
 
-            FuelSourceItem fuelSourceItem                   = ItemUtils.GetOrCreateComponent<FuelSourceItem>(Target);
+            FuelSourceItem fuelSourceItem                   = CommonUtilities.GetOrCreateComponent<FuelSourceItem>(Target);
 
             try
             {
@@ -215,12 +215,12 @@
                 if (gameObject != null)
                 {
                     GearItem component = gameObject.GetComponent<GearItem>();
-                    prefab = ItemUtils.GetGearItemPrefab(ItemUtils.NormalizeName(component.name)!);
+                    prefab = CommonUtilities.GetGearItemPrefab(CommonUtilities.NormalizeName(component.name)!);
                     Target = prefab.gameObject;
                 }
                 else
                 {
-                    prefab = ItemUtils.GetGearItemPrefab(ItemUtils.NormalizeName(gi.name)!);
+                    prefab = CommonUtilities.GetGearItemPrefab(CommonUtilities.NormalizeName(gi.name)!);
                     Target = prefab.gameObject;
                 }
             }
