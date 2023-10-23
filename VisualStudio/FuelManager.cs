@@ -5,6 +5,7 @@ namespace FuelManager
     internal class Main : MelonMod
     {
         public static GearItem? Target { get; set; }
+
         public static LiquidType GetKerosene()
         {
             try
@@ -13,27 +14,7 @@ namespace FuelManager
             }
             catch
             {
-                Logger.LogError("LiquidType.GetKerosene() was not found");
-                throw;
-            }
-        }
-
-        public static LiquidType GetLiquid(string liquid)
-        {
-            try
-            {
-                return liquid.ToLowerInvariant() switch
-                {
-                    "potable"       => LiquidType.GetPotableWater(),
-                    "nonpotable"    => LiquidType.GetNonPotableWater(),
-                    "kerosene"      => LiquidType.GetKerosene(),
-                    "antiseptic"    => LiquidType.GetAntiseptic(),
-                    _ => throw new BadMemeException($"string does not match existing LiquidType's, {liquid.ToLowerInvariant()}"),
-                };
-            }
-            catch
-            {
-                Logger.LogError("LiquidType.GetKerosene() was not found");
+                Logging.LogError("LiquidType.GetKerosene() was not found");
                 throw;
             }
         }
