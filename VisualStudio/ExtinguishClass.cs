@@ -8,10 +8,12 @@ namespace FuelManager
 {
     public class ExtinguishCallback
     {
+#pragma warning disable IDE1006 // Naming Styles
         public static Panel_ActionPicker? __instance { get; set; }
         private static Fire? fire { get; set; }
         private static WaterSupply cleanWaterSupply { get; } = GameManager.GetInventoryComponent().GetPotableWaterSupply().m_WaterSupply;
         private static WaterSupply dirtyWaterSupply { get; } = GameManager.GetInventoryComponent().GetNonPotableWaterSupply().m_WaterSupply;
+#pragma warning restore IDE1006 // Naming Styles
 
         public static bool HasFire()
         {
