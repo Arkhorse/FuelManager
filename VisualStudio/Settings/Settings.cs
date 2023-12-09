@@ -48,7 +48,7 @@ namespace FuelManager
         [Description("How much time it takes to refuel/ drain, in seconds. Default: 3")]
         [Slider(1f, 60f, 240)]
         public float refuelTime = 3f;
-
+        /*
         [Name("Amount of water to consume when extinguishing fires")]
         //[Description("")]
         [Slider(0.1f, 10f)]
@@ -57,7 +57,7 @@ namespace FuelManager
         [Name("Use Non Potable Water")]
         [Description("Will use dirty water first if there is any")]
         public bool UseNonPotableWaterSupply = false;
-
+        */
         [Name("Logging")]
         [Description("Enables extra logging that will spam your log")]
         public bool ExtraLogging = false;
