@@ -52,7 +52,7 @@ namespace FuelManager
 
                     if (InputManager.GetKeyDown(InputManager.m_CurrentContext, Settings.Instance.RefuelLampKey))
                     {
-                        FuelUtils.Refuel(gi, false, null);
+                        Fuel.Refuel(gi, false, null);
                     }
                 }
             }

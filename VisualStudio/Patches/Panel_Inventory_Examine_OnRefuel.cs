@@ -5,15 +5,15 @@
     {
         private static bool Prefix(Panel_Inventory_Examine __instance)
         {
-            if (__instance != null && FuelUtils.IsFuelItem(__instance.m_GearItem))
+            if (__instance != null && Fuel.IsFuelItem(__instance.m_GearItem))
             {
-                if (ButtonUtils.IsSelected(__instance.m_Button_Unload))
+                if (Buttons.IsSelected(__instance.m_Button_Unload))
                 {
-                    FuelUtils.Drain(__instance.m_GearItem, __instance);
+                    Fuel.Drain(__instance.m_GearItem, __instance);
                 }
                 else
                 {
-                    FuelUtils.Refuel(__instance.m_GearItem, true, __instance);
+                    Fuel.Refuel(__instance.m_GearItem, true, __instance);
                 }
                 return false;
             }

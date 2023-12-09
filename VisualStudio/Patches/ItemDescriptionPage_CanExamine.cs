@@ -5,7 +5,7 @@
     {
         private static bool Prefix(GearItem gi, ref bool __result)
         {
-            if (gi != null && FuelUtils.IsFuelItem(gi))
+            if (gi != null && Fuel.IsFuelItem(gi))
             {
                 __result = true;
                 return false;

@@ -7,22 +7,22 @@
         {
             if (!enable) return;
 
-            if (FuelUtils.IsFuelItem(__instance.m_GearItem))
+            if (Fuel.IsFuelItem(__instance.m_GearItem))
             {
                 // repurpose the left "Unload" button to "Drain"
-                ButtonUtils.SetButtonLocalizationKey(__instance.m_Button_Unload, "GAMEPLAY_BFM_Drain");
-                ButtonUtils.SetButtonSprite(__instance.m_Button_Unload, "ico_lightSource_lantern");
+                Buttons.SetButtonLocalizationKey(__instance.m_Button_Unload, "GAMEPLAY_BFM_Drain");
+                Buttons.SetButtonSprite(__instance.m_Button_Unload, "ico_lightSource_lantern");
                 // rename the bottom right "Unload" button to "Drain"
-                ButtonUtils.SetUnloadButtonLabel(__instance, "GAMEPLAY_BFM_Drain");
+                Buttons.SetUnloadButtonLabel(__instance, "GAMEPLAY_BFM_Drain");
 
                 Transform lanternTexture = __instance.m_RefuelPanel.transform.Find("FuelDisplay/Lantern_Texture");
-                ButtonUtils.SetTexture(lanternTexture, Il2Cpp.Utils.GetInventoryIconTexture(__instance.m_GearItem));
+                Buttons.SetTexture(lanternTexture, Il2Cpp.Utils.GetInventoryIconTexture(__instance.m_GearItem));
             }
             else
             {
-                ButtonUtils.SetButtonLocalizationKey(__instance.m_Button_Unload, "GAMEPLAY_Unload");
-                ButtonUtils.SetButtonSprite(__instance.m_Button_Unload, "ico_ammo_rifle");
-                ButtonUtils.SetUnloadButtonLabel(__instance, "GAMEPLAY_Unload");
+                Buttons.SetButtonLocalizationKey(__instance.m_Button_Unload, "GAMEPLAY_Unload");
+                Buttons.SetButtonSprite(__instance.m_Button_Unload, "ico_ammo_rifle");
+                Buttons.SetUnloadButtonLabel(__instance, "GAMEPLAY_Unload");
             }
         }
     }

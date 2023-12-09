@@ -5,9 +5,9 @@
     {
         private static bool Prefix(Panel_Inventory_Examine __instance)
         {
-            if (__instance != null && FuelUtils.IsFuelItem(__instance.m_GearItem))
+            if (__instance != null && Fuel.IsFuelItem(__instance.m_GearItem))
             {
-                FuelUtils.Drain(__instance.m_GearItem, __instance);
+                Fuel.Drain(__instance.m_GearItem, __instance);
             }
             return true;
         }

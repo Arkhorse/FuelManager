@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Il2CppSystem.Text.RegularExpressions;
 
-namespace FuelManager
+namespace FuelManager.Utilities
 {
     public static class CommonUtilities
     {

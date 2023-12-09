@@ -313,7 +313,7 @@ namespace FuelManager
                 del:                        new Action<bool, bool, float>(OnDrainFinished)
             );
 
-            ButtonUtils.SetButtonLocalizationKey(InterfaceManager.GetPanel<Panel_Inventory_Examine>().m_RefuelPanel.GetComponentInChildren<UIButton>(), "GAMEPLAY_Refuel");
+            Buttons.SetButtonLocalizationKey(InterfaceManager.GetPanel<Panel_Inventory_Examine>().m_RefuelPanel.GetComponentInChildren<UIButton>(), "GAMEPLAY_Refuel");
         }
 
         /// <summary>

@@ -20,13 +20,13 @@
             GearMessage.AddMessage(
                 "GEAR_JerrycanRusty",
                 Localization.Get("GAMEPLAY_BFM_Lost"),
-                $"{Localization.Get("GAMEPLAY_Kerosene")}, {FuelUtils.GetLiquidQuantityStringWithUnitsNoOunces(amount)}",
+                $"{Localization.Get("GAMEPLAY_Kerosene")}, {Fuel.GetLiquidQuantityStringWithUnitsNoOunces(amount)}",
                 Color.red,
                 false
                 );
             /*
             GearMessage.AddMessage(
-                "GEAR_JerrycanRusty", Localization.Get("GAMEPLAY_BFM_Lost"), " " + Localization.Get("GAMEPLAY_Kerosene") + " (" + FuelUtils.GetLiquidQuantityStringWithUnitsNoOunces(InterfaceManager.m_Panel_OptionsMenu.m_State.m_Units, amount) + ")", Color.red, false);
+                "GEAR_JerrycanRusty", Localization.Get("GAMEPLAY_BFM_Lost"), " " + Localization.Get("GAMEPLAY_Kerosene") + " (" + Fuel.GetLiquidQuantityStringWithUnitsNoOunces(InterfaceManager.m_Panel_OptionsMenu.m_State.m_Units, amount) + ")", Color.red, false);
             */
         }
     }
