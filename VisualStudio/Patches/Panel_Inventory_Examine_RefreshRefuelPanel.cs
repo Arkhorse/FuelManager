@@ -38,11 +38,7 @@
             __instance.m_FuelSupplyAmountLabel.text = $"{Fuel.GetLiquidQuantityStringNoOunces(totalCurrent)} / {Fuel.GetLiquidQuantityStringNoOunces(totalCapacity)}";
 
             __instance.UpdateWeightAndConditionLabels();
-#if DEBUG
-            Logging.Log($"currentLiters: {currentLiters}, capacityLiters: {capacityLiters}, totalCurrent: {totalCurrent}, totalCapacity: {totalCapacity}, fuelIsAvailable: {fuelIsAvailable}, flag: {flag}");
-            Logging.Log($"__instance.m_LanternFuelAmountLabel.text: {__instance.m_LanternFuelAmountLabel.text}");
-            Logging.Log($"__instance.m_FuelSupplyAmountLabel.text: {__instance.m_FuelSupplyAmountLabel.text}");
-#endif
+
             return false; // MUST BE FALSE
         }
     }
