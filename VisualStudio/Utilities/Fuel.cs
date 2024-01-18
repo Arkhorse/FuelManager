@@ -299,7 +299,9 @@ namespace FuelManager
                 return;
             }
 
-            GameAudioManager.PlayGuiConfirm();
+			Main.Target = gearItem;
+
+			GameAudioManager.PlayGuiConfirm();
 
             InterfaceManager.GetPanel<Panel_GenericProgressBar>().Launch(
                 name:                       Localization.Get("GAMEPLAY_BFM_DrainingProgress"),
