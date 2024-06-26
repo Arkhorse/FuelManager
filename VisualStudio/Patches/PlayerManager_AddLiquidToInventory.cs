@@ -1,11 +1,12 @@
 ﻿using Il2CppTLD.Gear;
+using Il2CppTLD.IntBackedUnit;
 
 namespace FuelManager
 {
-    [HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.AddLiquidToInventory), new Type[] { typeof(float), typeof(LiquidType) })]
+    [HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.AddLiquidToInventory), new Type[] { typeof(ItemLiquidVolume), typeof(LiquidType) })]
     internal class PlayerManager_AddLiquidToInventory
     {
-        private static void PostFix(PlayerManager __instance, float litersToAdd, LiquidType liquidType, ref float __result)
+        private static void PostFix(PlayerManager __instance, ItemLiquidVolume litersToAdd, LiquidType liquidType, ref ItemLiquidVolume __result)
         {
             if (__instance != null && liquidType == Main.GetKerosene() && __result != litersToAdd)
             {
