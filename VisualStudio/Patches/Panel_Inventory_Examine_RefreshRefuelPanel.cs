@@ -1,4 +1,6 @@
-﻿namespace FuelManager
+﻿using Il2CppTLD.IntBackedUnit;
+
+namespace FuelManager
 {
     [HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.RefreshRefuelPanel))]
     internal class Panel_Inventory_Examine_RefreshRefuelPanel
@@ -9,15 +11,15 @@
 
             __instance.m_RefuelPanel.SetActive(false);
             __instance.m_Button_Refuel.gameObject.SetActive(true);
-            //__instance.m_Button_RefuelBackground.SetActive(true); // DONT ENABLE. BREAKS EVERYTHING
+			//__instance.m_Button_RefuelBackground.SetActive(true); // DONT ENABLE. BREAKS EVERYTHING
 
-            float currentLiters     = Fuel.GetIndividualCurrentLiters(__instance.m_GearItem.GetComponent<GearItem>());
-            float capacityLiters    = Fuel.GetIndividualCapacityLiters(__instance.m_GearItem.GetComponent<GearItem>());
-            float totalCurrent      = Fuel.GetTotalCurrentLiters(__instance.m_GearItem.GetComponent<GearItem>());
-            float totalCapacity     = Fuel.GetTotalCapacityLiters(__instance.m_GearItem.GetComponent<GearItem>());
+			ItemLiquidVolume currentLiters     = Fuel.GetIndividualCurrentLiters(__instance.m_GearItem.GetComponent<GearItem>());
+			ItemLiquidVolume capacityLiters    = Fuel.GetIndividualCapacityLiters(__instance.m_GearItem.GetComponent<GearItem>());
+			ItemLiquidVolume totalCurrent      = Fuel.GetTotalCurrentLiters(__instance.m_GearItem.GetComponent<GearItem>());
+			ItemLiquidVolume totalCapacity     = Fuel.GetTotalCapacityLiters(__instance.m_GearItem.GetComponent<GearItem>());
 
             bool fuelIsAvailable    = totalCurrent > Fuel.MIN_LITERS;
-            bool flag               = fuelIsAvailable && !Il2Cpp.Utils.Approximately(currentLiters, capacityLiters, Fuel.MIN_LITERS);
+            bool flag               = fuelIsAvailable && !Il2Cpp.Utils.Approximately(currentLiters.m_Units, capacityLiters.m_Units, Fuel.MIN_LITERS.m_Units);
 
             __instance.m_Refuel_X.gameObject.SetActive(!flag);
             __instance.m_Button_Refuel.gameObject.GetComponent<Panel_Inventory_Examine_MenuItem>().SetDisabled(!flag);
