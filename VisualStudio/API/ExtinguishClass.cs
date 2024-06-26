@@ -45,8 +45,8 @@
 //                // GAMEPLAY_FM_Extinguish_Failed
 //                HUDMessage.AddMessage("Not Enough Water", false, true);
 //                GameAudioManager.PlayGUIError();
-//                Logging.Log($"Amount of clean water: {cleanWaterSupply.m_VolumeInLiters}");
-//                Logging.Log($"Amount of dirty water: {dirtyWaterSupply.m_VolumeInLiters}, enabled: {Settings.Instance.UseNonPotableWaterSupply}");
+//                Main.Logger.Log($"Amount of clean water: {cleanWaterSupply.m_VolumeInLiters}");
+//                Main.Logger.Log($"Amount of dirty water: {dirtyWaterSupply.m_VolumeInLiters}, enabled: {Settings.Instance.UseNonPotableWaterSupply}");
 //            }
 //        }
 
@@ -71,7 +71,7 @@
 //            }
 //            else
 //            {
-//                Logging.LogError("Fire not found");
+//                Main.Logger.LogError("Fire not found");
 //            }
 //        }
 //    }
