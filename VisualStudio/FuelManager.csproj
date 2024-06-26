@@ -21,10 +21,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.25.0" />
+		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.28.0" />
 		<PackageReference Include="STBlade.Modding.TLD.ModSettings" Version="1.9.0" />
 		<PackageReference Include="STBlade.Modding.TLD.GearSpawner" Version="2.3.2" />
 		<PackageReference Include="STBlade.Modding.TLD.ModComponent" Version="6.2.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="ComplexLogger">
+	    <HintPath>..\..\..\Libraries\ComplexLogger.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 	<ItemGroup>

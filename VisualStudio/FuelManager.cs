@@ -1,12 +1,18 @@
-﻿using Il2CppTLD.Gear;
+﻿global using ComplexLogger;
+
+global using FuelManager.Utilities;
+
+using Il2CppTLD.Gear;
+
 
 namespace FuelManager
 {
-    internal class Main : MelonMod
+    public class Main : MelonMod
     {
         public static GearItem? Target { get; set; }
         public static float MIN_LITERS { get; } = 0.001f;
         public static string REFUEL_AUDIO { get; } = "Play_SndActionRefuelLantern";
+        public static ComplexLogger<Main> Logger;
 
         public static LiquidType GetKerosene()
         {
@@ -22,7 +28,9 @@ namespace FuelManager
 
         public override void OnInitializeMelon()
         {
-            Settings.OnLoad(false);
+            Logger ??= new();
+
+			Settings.OnLoad(false);
             Spawns.AddToModComponent();
             ConsoleCommands.RegisterCommands();
         }

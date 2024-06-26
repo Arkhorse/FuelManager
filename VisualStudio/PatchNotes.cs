@@ -122,8 +122,8 @@ namespace FuelManager
                 new List<string>
                 {
                     "Added the ability to refuel the lamp using a hotkey",
-                    "Rewrote most of the logic for refueling and draining to permit the above and remove extra logging no longer required",
-                    "Refactor of mod, including Main class rename, Logging class update, SceneUtilities class update, ect. See Github commits for full details on this"
+                    "Rewrote most of the logic for refueling and draining to permit the above and remove extra Main.Logger no longer required",
+                    "Refactor of mod, including Main class rename, Main.Logger class update, SceneUtilities class update, ect. See Github commits for full details on this"
                 })
             );
         }
@@ -132,12 +132,12 @@ namespace FuelManager
         {
             for (int i = 0; i < ChangeNotes.Count; i++)
             {
-                Logging.Log($"Version: {ChangeNotes[i].Instance.m_Version}");
-                Logging.Log("Changes:");
+                Main.Logger.Log($"Version: {ChangeNotes[i].Instance.m_Version}", FlaggedLoggingLevel.Debug);
+                Main.Logger.Log("Changes:", FlaggedLoggingLevel.Debug);
 
                 for (int v = 0; v < ChangeNotes[i].Instance.Changes.Count; v++)
                 {
-                    Logging.Log($"\t{ChangeNotes[i].Instance.Changes[v]}");
+                    Main.Logger.Log($"\t{ChangeNotes[i].Instance.Changes[v]}", FlaggedLoggingLevel.Debug);
                 }
             }
         }

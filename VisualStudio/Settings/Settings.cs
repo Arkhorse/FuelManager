@@ -6,11 +6,6 @@ using RadialMenuUtilities;
 
 namespace FuelManager
 {
-    public enum LoggingLevel
-    {
-        None, Info, Debug, Warn, Error, Fatal, Trace
-    }
-
     internal class Settings : JsonModSettings
     {
         internal static bool RadialOverride { get; set; } = false;
@@ -58,9 +53,6 @@ namespace FuelManager
         [Description("Will use dirty water first if there is any")]
         public bool UseNonPotableWaterSupply = false;
         */
-        [Name("Logging")]
-        [Description("Enables extra logging that will spam your log")]
-        public bool ExtraLogging = false;
 
         [Section("Spawn Settings")]
 
@@ -95,11 +87,11 @@ namespace FuelManager
         //[Description("")]
         //public bool AddFuelTo = false;
 
-        //[Section("Logging")]
+        //[Section("Main.Logger")]
 
         //[Name("Level")]
-        //[Description("Depending on the level of logging, you will get different logging")]
-        //public LoggingLevel loggingLevel = LoggingLevel.Debug;
+        //[Description("Depending on the level of Main.Logger, you will get different Main.Logger")]
+        //public Main.LoggerLevel Main.LoggerLevel = Main.LoggerLevel.Debug;
 
         protected override void OnConfirm()
         {
@@ -129,13 +121,13 @@ namespace FuelManager
                 if (RadialOverride) return;
                 else
                 {
-                    Logging.LogError("MissingMethodException: Either your missing RadialMenuUtilies or your version of this mod or RMU is outdated", Color.red);
+                    Main.Logger.LogError("MissingMethodException: Either your missing RadialMenuUtilies or your version of this mod or RMU is outdated", Color.red);
                     throw;
                 }
             }
             catch
             {
-                Logging.LogError($"Threw exception while attempting to create new radial menu");
+                Main.Logger.LogError($"Threw exception while attempting to create new radial menu");
                 throw;
             }
         }
