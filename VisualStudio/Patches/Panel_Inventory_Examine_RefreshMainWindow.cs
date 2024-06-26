@@ -1,4 +1,6 @@
-﻿namespace FuelManager
+﻿using Il2CppTLD.IntBackedUnit;
+
+namespace FuelManager
 {
     [HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.RefreshMainWindow))]
     internal class Panel_Inventory_Examine_RefreshMainWindow
@@ -17,7 +19,7 @@
 
                 __instance.m_Button_Unload.gameObject.SetActive(true);
 
-                float litersToDrain = Fuel.GetLitersToDrain(__instance.m_GearItem);
+				ItemLiquidVolume litersToDrain = Fuel.GetLitersToDrain(__instance.m_GearItem);
                 __instance.m_Button_Unload.GetComponent<Panel_Inventory_Examine_MenuItem>().SetDisabled(litersToDrain < Fuel.MIN_LITERS);
             }
         }
