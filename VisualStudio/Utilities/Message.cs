@@ -1,21 +1,23 @@
-﻿namespace FuelManager
+﻿using Il2CppTLD.IntBackedUnit;
+
+namespace FuelManager
 {
     internal class Message
     {
         internal static Panel_OptionsMenu _Panel_OptionsMenu = new();
-        internal static void SendLostMessageDelayed(float amount)
+        internal static void SendLostMessageDelayed(ItemLiquidVolume amount)
         {
             MelonCoroutines.Start(SendDelayedLostMessageIEnumerator(amount));
         }
 
-        private static System.Collections.IEnumerator SendDelayedLostMessageIEnumerator(float amount)
+        private static System.Collections.IEnumerator SendDelayedLostMessageIEnumerator(ItemLiquidVolume amount)
         {
             yield return new WaitForSeconds(1f);
 
             SendLostMessageImmediate(amount);
         }
 
-        internal static void SendLostMessageImmediate(float amount)
+        internal static void SendLostMessageImmediate(ItemLiquidVolume amount)
         {
             GearMessage.AddMessage(
                 "GEAR_JerrycanRusty",
