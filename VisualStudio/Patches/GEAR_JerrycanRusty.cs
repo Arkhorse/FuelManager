@@ -13,6 +13,7 @@
             {
                 //FuelItemAPI.AddRepair(__instance, Constants.REPAIR_HARVEST_GEAR, new int[] { 1 }, Constants.REPAIR_TOOLS, "Play_RepairingMetal");
                 FuelItemAPI.AddHarvest(__instance, Constants.REPAIR_HARVEST_GEAR, new int[] { 2 }, Constants.HARVEST_TOOLS, "Play_HarvestingMetalSaw");
+                FuelItemAPI.AddMillable(__instance, 30, Constants.REPAIR_HARVEST_GEAR, [1], Constants.REPAIR_HARVEST_GEAR, [2], true, 30, 60, SkillType.ToolRepair);
             }
         }
     }
