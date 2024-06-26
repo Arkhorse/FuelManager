@@ -34,8 +34,6 @@ This mod completely replaces [Better-Fuel-Management](https://github.com/ds5678/
 * [ModComponent](https://github.com/dommrogers/ModComponent/releases/latest)
 <!--* [RadialMenuUtilities](https://github.com/Arkhorse/RadialMenuUtilities/releases/latest)-->
 
-In addition to this, I have made changes to how the archives are handled. You must download the archive named , as that contains the various asset stuff. If you are using ModdersGearToolbox, download FuelManager.ModdersGearToolbox.modcomponent in addition to the Shared one, this contains the recipes and whatnot. If you are not using ModdersGearToolbox, download FuelManager.modcomponent instead.
-
 ### Install Steps
 * Download `FuelManager.dll`, `FuelManager.Shared.modcomponent` and `FuelManager.modcomponent` from the [releases page](https://github.com/Arkhorse/FuelManager/releases)
 * Move `FuelManager.dll`, `FuelManager.Shared.modcomponent` and `FuelManager.modcomponent` into your mods folder.
