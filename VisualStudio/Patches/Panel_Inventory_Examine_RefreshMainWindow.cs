@@ -20,7 +20,7 @@ namespace FuelManager
                 __instance.m_Button_Unload.gameObject.SetActive(true);
 
 				ItemLiquidVolume litersToDrain = Fuel.GetLitersToDrain(__instance.m_GearItem);
-                __instance.m_Button_Unload.GetComponent<Panel_Inventory_Examine_MenuItem>().SetDisabled(litersToDrain < Fuel.MIN_LITERS);
+                __instance.m_Button_Unload.GetComponent<Panel_Inventory_Examine_MenuItem>().SetDisabled(litersToDrain < ItemLiquidVolume.Zero);
             }
         }
     }
