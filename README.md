@@ -35,14 +35,14 @@ This mod completely replaces [Better-Fuel-Management](https://github.com/ds5678/
 <!--* [RadialMenuUtilities](https://github.com/Arkhorse/RadialMenuUtilities/releases/latest)-->
 
 ### Install Steps
-* Download `FuelManager.dll` and `FuelManager.modcomponent` from the [releases page](https://github.com/Arkhorse/FuelManager/releases)
-* Move `FuelManager.dll` and `FuelManager.modcomponent` into your mods folder.
+* Download `FuelManager.dll`, `FuelManager.Shared.modcomponent` and `FuelManager.modcomponent` from the [releases page](https://github.com/Arkhorse/FuelManager/releases)
+* Move `FuelManager.dll`, `FuelManager.Shared.modcomponent` and `FuelManager.modcomponent` into your mods folder.
 
 ## Optional Addons
 ### Modders Gear Toolbox
 #### Additional Installation Instructions:
  * Download [Modders Gear Toolbox](https://github.com/Jods-Its/Modders-Gear-Toolbox)
- * Download the Fuel Manager [`.modcomponent`](https://github.com/Arkhorse/FuelManager/releases/download/1.2.7/FuelManager.ModdersGearToolbox.modcomponent) for Modders Gear Toolbox
+ * Download the Fuel Manager [`.modcomponent`](https://github.com/Arkhorse/FuelManager/releases/latest/download/FuelManager.ModdersGearToolbox.modcomponent) for Modders Gear Toolbox
  * **Remove the default modcomponent (`FuelManager.modcomponent`)**
 
 ## Localizations
