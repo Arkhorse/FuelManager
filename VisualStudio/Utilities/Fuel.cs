@@ -14,7 +14,7 @@ namespace FuelManager
 		internal static LiquidItem _LiquidItem                              = new();
 		//KeroseneLampItem _KeroseneLampItem                                  = _Panel_Inventory_Examine.m_GearItem.GetComponent<KeroseneLampItem>();
 
-		public static ItemLiquidVolume MIN_LITERS                           = ItemLiquidVolume.FromLiters(0.001f);
+		//public static ItemLiquidVolume MIN_LITERS                           = ItemLiquidVolume.FromLiters(0.001f);
 		private const string REFUEL_AUDIO                                   = "Play_SndActionRefuelLantern";
 		internal static readonly float REFUEL_TIME                          = Settings.Instance.refuelTime;
 		//private const float REFUEL_TIME                                     = 3f;
@@ -40,7 +40,7 @@ namespace FuelManager
 			else if (IsFuelContainer(gearItem))
 			{
 				gearItem.m_LiquidItem.m_Liquid += volume;
-				gearItem.m_LiquidItem.m_Liquid = ItemLiquidVolume.Clamp(gearItem.m_LiquidItem.m_Liquid, ItemLiquidVolume.Zero, gearItem.m_LiquidItem.m_Maximum);
+				gearItem.m_LiquidItem.m_Liquid = ItemLiquidVolume.Clamp(gearItem.m_LiquidItem.m_Liquid, ItemLiquidVolume.Zero, gearItem.m_LiquidItem.m_LiquidCapacity);
 			}
 		}
 
@@ -62,7 +62,7 @@ namespace FuelManager
 
 				remaining -= transferred;
 
-				if (remaining < MIN_LITERS) break;
+				if (remaining == ItemLiquidVolume.Zero) break;
 			}
 		}
 
