@@ -18,8 +18,8 @@ namespace FuelManager
 			ItemLiquidVolume totalCurrent      = Fuel.GetTotalCurrentLiters(__instance.m_GearItem.GetComponent<GearItem>());
 			ItemLiquidVolume totalCapacity     = Fuel.GetTotalCapacityLiters(__instance.m_GearItem.GetComponent<GearItem>());
 
-            bool fuelIsAvailable    = totalCurrent > Fuel.MIN_LITERS;
-            bool flag               = fuelIsAvailable && !Il2Cpp.Utils.Approximately(currentLiters.m_Units, capacityLiters.m_Units, Fuel.MIN_LITERS.m_Units);
+            bool fuelIsAvailable    = totalCurrent > ItemLiquidVolume.Zero;
+            bool flag               = fuelIsAvailable && !(currentLiters.m_Units == capacityLiters.m_Units);
 
             __instance.m_Refuel_X.gameObject.SetActive(!flag);
             __instance.m_Button_Refuel.gameObject.GetComponent<Panel_Inventory_Examine_MenuItem>().SetDisabled(!flag);
