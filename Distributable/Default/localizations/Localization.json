@@ -10,7 +10,7 @@
         "Turkish" : "Yakıt Bidonu"
     },
     "GAMEPLAY_GasCanDescription": {
-        "English": "An old gas can. Holds kerosene just as well.",
+        "English": "A gasoline jug. Holds kerosene just as well.",
         "Russian": "Старая большая канистра. Вмещает много топлива.",
         "French (France)": "Un vieux bidon d'essence. Peut tout aussi bien servir à stocker du kérosène.",
         "Japanese": "古いガソリン携行缶。石油を入れるのに適している。",
@@ -29,16 +29,17 @@
         "Simplified Chinese": "汽油罐"
     },
     "GAMEPLAY_GasCanFullDescription": {
-        "English": "An old gas can. Holds kerosene just as well.",
+        "English": "A gasoline jug. Holds kerosene just as well.",
         "Russian": "Старая большая канистра. Вмещает много топлива.",
         "French (France)": "Un vieux bidon d'essence. Peut tout aussi bien servir à stocker du kérosène.",
         "Japanese": "古いガソリン携行缶。石油を入れるのに適している。",
         "Polish": "Stary kanister. Odpowiedni do przechowywania paliwa.",
         "Traditional Chinese": "一個老舊的汽油罐，也可拿來裝燃油。",
-        "Simplified Chinese": "一个老旧的汽油罐，也可拿来装燃油。"
+        "Simplified Chinese": "一个老旧的汽油罐，也可拿来装燃油。",
+        "Turkish" : "Eski bir yakıt bidonu. Gazyağı da tutar."
     },
     "GAMEPLAY_BFM_NoFuelCapacityAvailable": {
-        "English": "No containers with remaining capacity available",
+        "English": "No containers have room for fuel",
         "German": "Keine Behälter mit verbleibender Kapazität vorhanden",
         "Russian": "Отсутствует емкость для топлива",
         "French (France)": "Tous vos récipients sont déjà pleins",
@@ -68,19 +69,19 @@
         "Simplified Chinese": "倒出"
     },
     "GAMEPLAY_BFM_DrainingProgress": {
-        "English": "Draining...",
-        "German": "Entleeren...",
-        "Russian": "Сливает...",
-        "French (France)": "Vidange...",
-        "Japanese": "抜き取っています...",
-        "Swedish": "Tömning...",
-        "Spanish (Spain)": "Vaciando...",
-        "Turkish": "Boşaltılıyor...",
-        "Dutch": "Aftappen...",
-        "Finnish": "Tyhjennetään...",
-        "Polish": "Opróznianie...",
-        "Traditional Chinese": "倒出中...",
-        "Simplified Chinese": "倒出中..."
+        "English": "Draining ...",
+        "German": "Entleeren ...",
+        "Russian": "Сливает ...",
+        "French (France)": "Vidange ...",
+        "Japanese": "抜き取っています ...",
+        "Swedish": "Tömning ...",
+        "Spanish (Spain)": "Vaciando ...",
+        "Turkish": "Boşaltılıyor ...",
+        "Dutch": "Aftappen ...",
+        "Finnish": "Tyhjennetään ...",
+        "Polish": "Opróznianie ...",
+        "Traditional Chinese": "倒出中 ...",
+        "Simplified Chinese": "倒出中 ..."
     },
     "GAMEPLAY_BFM_Lost": {
         "English": "Lost",
@@ -98,7 +99,7 @@
         "Simplified Chinese": "已流失"
     },
     "GAMEPLAY_BFM_AlreadyEmpty": {
-        "English": "Already empty",
+        "English": "Already Empty",
         "German": "Schon leer",
         "Russian": "Емкость пуста",
         "French (France)": "Déjà vide",
@@ -113,7 +114,7 @@
         "Simplified Chinese": "已清空"
     },
     "GAMEPLAY_BFM_AlreadyFilled": {
-        "English": "Already full",
+        "English": "Already Full",
         "German": "Schon voll",
         "Russian": "Емкость заполнена",
         "French (France)": "Déjà plein",
