@@ -7,7 +7,8 @@
                             "Japanese" : "ガソリン缶",
                             "Polish" : "Kanister",
                             "Traditional Chinese" : "汽油罐",
-                            "Simplified Chinese" : "汽油罐"
+                            "Simplified Chinese" : "汽油罐",
+                            "Italian" : "Contenitore per Benzina"
     },
     "GAMEPLAY_GasCanDescription" : {
                             "English" : "An old gas can. Holds kerosene just as well.",
@@ -17,7 +18,8 @@
                             "Japanese" : "古いガソリン携行缶。石油を入れるのに適している。",
                             "Polish" : "Stary kanister. Odpowiedni do przechowywania paliwa.",
                             "Traditional Chinese" : "一個老舊的汽油罐，也可拿來裝燃油。",
-                            "Simplified Chinese" : "一个老旧的汽油罐，也可拿来装燃油。"
+                            "Simplified Chinese" : "一个老旧的汽油罐，也可拿来装燃油。",
+                            "Italian" : "Un contenitore per benzina. Può contenere cherosene altrettanto bene."
               
     },
     "GAMEPLAY_BFM_NoFuelCapacityAvailable" : {
@@ -33,7 +35,8 @@
                             "Finnish" : "Ei säiliötä, joissa on jäljellä käytettävää tilaa",
                             "Polish" : "Brak zbiorników z wymaganą pojemnością",
                             "Traditional Chinese" : "沒有未裝滿的容器可用",
-                            "Simplified Chinese" : "没有未装满的容器可用"
+                            "Simplified Chinese" : "没有未装满的容器可用",
+                            "Italian" : "Nessun contenitore ha spazio per la benzina"
     },
     "GAMEPLAY_BFM_Drain" : {
                             "English" : "Drain",
@@ -48,7 +51,8 @@
                             "Finnish" : "Tyhjennä",
                             "Polish" : "Opróżni",
                             "Traditional Chinese" : "倒出",
-                            "Simplified Chinese" : "倒出"
+                            "Simplified Chinese" : "倒出",
+                            "Italian" : "Svuota"
     },
     "GAMEPLAY_BFM_DrainingProgress" : {
                             "English" : "Draining...",
@@ -63,7 +67,8 @@
                             "Finnish" : "Tyhjennetään...",
                             "Polish" : "Opróznianie...",
                             "Traditional Chinese" : "倒出中...",
-                            "Simplified Chinese" : "倒出中..."
+                            "Simplified Chinese" : "倒出中...",
+                            "Italian" : "Svuotamento..."
     },
     "GAMEPLAY_BFM_Lost" : {
                             "English" : "Lost",
@@ -78,7 +83,8 @@
                             "Finnish" : "Menetetty",
                             "Polish" : "Stracone",
                             "Traditional Chinese" : "已流失",
-                            "Simplified Chinese" : "已流失"
+                            "Simplified Chinese" : "已流失",
+                            "Italian" : "Perduto"
     },
     "GAMEPLAY_BFM_AlreadyEmpty" : {
                             "English" : "Already empty",
@@ -93,7 +99,8 @@
                             "Finnish" : "On jo tyhjä",
                             "Polish" : "Zbiornik jest już pusty",
                             "Traditional Chinese" : "已清空",
-                            "Simplified Chinese" : "已清空"
+                            "Simplified Chinese" : "已清空",
+                            "Italian" : "Già Vuoto"
     },
     "GAMEPLAY_BFM_AlreadyFilled" : {
                             "English" : "Already full",
@@ -108,6 +115,7 @@
                             "Finnish" : "On jo täysi",
                             "Polish" : "Zbiornik jest już pełny",
                             "Traditional Chinese" : "已裝滿",
-                            "Simplified Chinese" : "已装滿"
+                            "Simplified Chinese" : "已装滿",
+                            "Italian" : "Già Pieno"
     }
 }
