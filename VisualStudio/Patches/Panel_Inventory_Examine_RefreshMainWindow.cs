@@ -7,7 +7,9 @@ namespace FuelManager
     {
         private static void Postfix(Panel_Inventory_Examine __instance)
         {
-            if (Fuel.IsFuelItem(__instance.m_GearItem.GetComponent<GearItem>()))
+			if (!__instance.IsPanelPatchable()) return;
+			if (__instance.m_GearItem == null) return;
+			if (Fuel.IsFuelItem(__instance.m_GearItem.GetComponent<GearItem>()))
             {
                 Vector3 position = Buttons.GetBottomPosition(
                                                 __instance.m_Button_Harvest,
@@ -20,7 +22,7 @@ namespace FuelManager
                 __instance.m_Button_Unload.gameObject.SetActive(true);
 
 				ItemLiquidVolume litersToDrain = Fuel.GetLitersToDrain(__instance.m_GearItem);
-                __instance.m_Button_Unload.GetComponent<Panel_Inventory_Examine_MenuItem>().SetDisabled(litersToDrain < ItemLiquidVolume.Zero);
+                __instance.m_Button_Unload.GetComponent<Panel_Inventory_Examine_MenuItem>().SetDisabled(litersToDrain <= ItemLiquidVolume.Zero);
             }
         }
     }
