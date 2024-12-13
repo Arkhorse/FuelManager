@@ -5,8 +5,7 @@ namespace FuelManager.Utilities
 {
     public static class CommonUtilities
     {
-        [return: NotNullIfNotNull(nameof(name))]
-        public static GearItem GetGearItemPrefab(string name) => GearItem.LoadGearItemPrefab(name);
+        public static GearItem? GetGearItemPrefab(string name) => GearItem.LoadGearItemPrefab(name);
 
         /// <summary>
         /// Normalizes the name given to remove extra bits using regex for most of the changes
