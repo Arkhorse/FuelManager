@@ -12,13 +12,13 @@ namespace FuelManager
         internal static Settings Instance { get; } = new();
 #if RMU
         internal static CustomRadialMenu? radialMenu { get; set; }
-#endif
+
         internal static List<string> GearNames { get; } = new List<string>
         { "GEAR_GasCan", "GEAR_JerrycanRusty", "GEAR_LampFuel", "GEAR_LampFuelFull" };
 
+
         internal static List<GearItem> GearItems { get; set; } = new();
 
-#if RMU
         [Section("Gameplay Settings")]
         [Name("Use Radial Menu")]
         [Description("Enables a new radial menu for you to easily access your fuel containers.")]
@@ -86,12 +86,6 @@ namespace FuelManager
         //[Name("")]
         //[Description("")]
         //public bool AddFuelTo = false;
-
-        //[Section("Main.Logger")]
-
-        //[Name("Level")]
-        //[Description("Depending on the level of Main.Logger, you will get different Main.Logger")]
-        //public Main.LoggerLevel Main.LoggerLevel = Main.LoggerLevel.Debug;
 
         protected override void OnConfirm()
         {
