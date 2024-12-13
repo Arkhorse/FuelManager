@@ -1,11 +1,13 @@
 ﻿namespace FuelManager
 {
-    [HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.Enable), new Type[] { typeof(bool), typeof(ComingFromScreenCategory) })]
+    [HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.Enable), [typeof(bool), typeof(ComingFromScreenCategory)])]
     internal class Panel_Inventory_Examine_Enable
     {
         private static void Prefix(Panel_Inventory_Examine __instance, bool enable)
         {
-            if (!enable) return;
+			if (!__instance.IsPanelPatchable()) return;
+            if (__instance.m_GearItem == null) return;
+			if (!enable) return;
 
             if (Fuel.IsFuelItem(__instance.m_GearItem))
             {
@@ -17,6 +19,7 @@
 
                 Transform lanternTexture = __instance.m_RefuelPanel.transform.Find("FuelDisplay/Lantern_Texture");
                 Buttons.SetTexture(lanternTexture, Il2Cpp.Utils.GetInventoryIconTexture(__instance.m_GearItem));
+                Main.Logger.Log($"{__instance.m_GearItem.name}: IsFuelItem", FlaggedLoggingLevel.Debug);
             }
             else
             {

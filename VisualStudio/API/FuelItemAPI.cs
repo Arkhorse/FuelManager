@@ -1,8 +1,8 @@
-﻿using Il2CppTLD.IntBackedUnit;
+﻿using System.Text;
 
 namespace FuelManager
 {
-	[RegisterTypeInIl2Cpp]
+	[RegisterTypeInIl2Cpp(false)]
 	public class FuelItemAPI : MonoBehaviour
 	{
 		#region Repair
@@ -30,7 +30,7 @@ namespace FuelManager
 		}
 
 		public static void AddRepair(
-			GearItem? gi,
+			ref GearItem? gi,
 			string[] requiredGear,
 			int[] repairUnits,
 			string[] extra,
@@ -42,15 +42,17 @@ namespace FuelManager
 		{
 			if (gi is null) return;
 
-			GameObject? Target = GetInstancedObject(gi);
+			//GameObject? Target = GetInstancedObject(gi);
 
-			if (Target is null) return;
+			//if (Target is null) return;
 
-			if (Target.GetComponent<Repairable>() is not null) return;
+			var component = gi.gameObject.GetComponent<Repairable>();
+
+			if (!(component == null)) return;
 
 			try
 			{
-				Repairable repairable				= Target.AddComponent<Repairable>();
+				Repairable repairable				= gi.gameObject.AddComponent<Repairable>();
 				repairable.m_RepairAudio            = audio;
 				repairable.m_DurationMinutes        = duration;
 				repairable.m_ConditionIncrease      = ConditionIncrease;
@@ -93,7 +95,7 @@ namespace FuelManager
 		}
 
 		public static void AddHarvest(
-			GearItem gi,
+			ref GearItem gi,
 			string[] YieldGear,
 			int[] YieldUnits,
 			string[] RequiredTools,
@@ -104,15 +106,17 @@ namespace FuelManager
 		{
 			if (gi is null) return;
 
-			GameObject? Target = GetInstancedObject(gi);
+			//GameObject? Target = GetInstancedObject(gi);
 
-			if (Target is null) return;
+			//if (Target is null) return;
 
-			if (Target.GetComponent<Harvest>() is not null) return;
+			var component = gi.gameObject.GetComponent<Harvest>();
+
+			if (!(component == null)) return;
 
 			try
 			{
-				Harvest harvest					= Target.AddComponent<Harvest>();
+				Harvest harvest					= gi.gameObject.AddComponent<Harvest>();
 				harvest.m_Audio					= audio;
 				harvest.m_DurationMinutes		= duration;
 
@@ -131,8 +135,7 @@ namespace FuelManager
 		#endregion
 		#region Millable
 		public static void AddMillable(
-			GearItem gi,
-			int RepairTime,
+			ref GearItem gi,
 			string[] RequiredGear,
 			int[] RequiredGearUnits,
 			string[] RestoreRequiredGear,
@@ -145,14 +148,17 @@ namespace FuelManager
 		{
 			if (gi is null) return;
 
-			GameObject? Target = GetInstancedObject(gi);
+			//GameObject? Target = GetInstancedObject(gi);
 
-			if (Target is null) return;
+			//if (Target is null) return;
 
-			if (Target.GetComponent<Harvest>() is not null) return;
+			var component = gi.gameObject.GetComponent<Millable>();
+
+			if (!(component == null)) return;
+
 			try
 			{
-				Millable millable						= Target.AddComponent<Millable>();
+				Millable millable						= gi.gameObject.AddComponent<Millable>();
 				millable.m_RepairRequiredGear			= CommonUtilities.GetItems<GearItem>(RequiredGear);
 				millable.m_RepairRequiredGearUnits		= RequiredGearUnits;
 				millable.m_RestoreRequiredGear			= CommonUtilities.GetItems<GearItem>(RestoreRequiredGear);
@@ -169,7 +175,7 @@ namespace FuelManager
 		}
 		#endregion
 		#region Fuel Source
-		public static void AddFuelSource(GearItem gi,
+		public static void AddFuelSource(ref GearItem gi,
 										 float burnHours,
 										 float fireAge,
 										 float fireStartDuration,
@@ -183,11 +189,15 @@ namespace FuelManager
 		{
 			if (gi is null) return;
 
-			GameObject? Target = GetInstancedObject(gi);
+			//GameObject? Target = GetInstancedObject(gi);
 
-			if (Target is null) return;
+			//if (Target is null) return;
 
-			FuelSourceItem fuelSourceItem                   = CommonUtilities.GetOrCreateComponent<FuelSourceItem>(Target);
+			var component = gi.gameObject.GetComponent<FuelSourceItem>();
+
+			if (!(component == null)) return;
+
+			FuelSourceItem fuelSourceItem                   = CommonUtilities.GetOrCreateComponent<FuelSourceItem>(gi.gameObject);
 
 			try
 			{
@@ -211,45 +221,74 @@ namespace FuelManager
 			}
 		}
 		#endregion
-		public static GameObject? GetInstancedObject(GearItem gi)
-		{
-			GameObject? Target      = null;
-			GameObject? gameObject  = null;
-			GearItem? prefab        = null;
 
-			if (gi is null) return null;
+		//public static GameObject? GetInstancedObject(GearItem gi)
+		//{
+		//	GameObject? Target      = null;
+		//	GameObject? gameObject  = null;
+		//	GearItem? prefab        = null;
 
-			try
-			{
-				gameObject = GameObject.Find(gi.name);
-			}
-			catch (Exception e)
-			{
-				Main.Logger.Log($"Could not Instantiate item {gi.name}", FlaggedLoggingLevel.Exception, e);
-			}
+		//	StringBuilder sb = new StringBuilder();
 
-			try
-			{
-				if (gameObject != null)
-				{
-					GearItem component = gameObject.GetComponent<GearItem>();
-					prefab = CommonUtilities.GetGearItemPrefab(CommonUtilities.NormalizeName(component.name)!);
-					Target = prefab.gameObject;
-				}
-				else
-				{
-					prefab = CommonUtilities.GetGearItemPrefab(CommonUtilities.NormalizeName(gi.name)!);
-					Target = prefab.gameObject;
-				}
-			}
-			catch (Exception e)
-			{
-				Main.Logger.Log("Attempting to get the Prefab failed, GearItem: {gi.name}", FlaggedLoggingLevel.Exception, e);
+		//	string name = CommonUtilities.NormalizeName(gi.name);
 
-				Target = gi.gameObject;
-			}
+		//	if (gi is null) return null;
 
-			return Target;
-		}
+		//	try
+		//	{
+		//		gameObject = GameObject.Find(name);
+		//	}
+		//	catch (Exception e)
+		//	{
+		//		sb.Append("Could not Instantiate item ");
+		//		if (!string.IsNullOrWhiteSpace(name))
+		//		{
+		//			sb.Append(name);
+		//		}
+
+		//		Main.Logger.Log(sb.ToString(), FlaggedLoggingLevel.Exception, e);
+		//		sb.Clear();
+		//	}
+
+		//	if (gameObject == null)
+		//	{
+		//		prefab = CommonUtilities.GetGearItemPrefab(CommonUtilities.NormalizeName(name));
+		//		if (!(prefab == null))
+		//		{
+		//			Target = prefab.gameObject;
+		//		}
+		//		return Target;
+		//	}
+
+		//	try
+		//	{
+		//		GearItem component = gameObject.GetComponent<GearItem>();
+		//		prefab = CommonUtilities.GetGearItemPrefab(CommonUtilities.NormalizeName(component.name));
+		//		if (prefab == null)
+		//		{
+		//			return null;
+		//		}
+		//		Target = prefab.gameObject;
+		//	}
+		//	catch (Exception e)
+		//	{
+		//		sb.Append("Attempting to get the Prefab failed, GearItem: ");
+		//		if (!string.IsNullOrWhiteSpace(name))
+		//		{
+		//			sb.Append(name);
+		//		}
+
+		//		Target = gi.gameObject;
+
+		//		if (Target == null)
+		//		{
+		//			sb.Append(" WARNING: TARGET IS NULL ");
+		//		}
+
+		//		Main.Logger.Log(sb.ToString(), FlaggedLoggingLevel.Exception, e);
+		//	}
+
+		//	return Target;
+		//}
 	}
 }

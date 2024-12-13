@@ -5,7 +5,9 @@
     {
         private static bool Prefix(Panel_Inventory_Examine __instance)
         {
-            if (__instance != null && Fuel.IsFuelItem(__instance.m_GearItem))
+			if (!__instance.IsPanelPatchable()) return true;
+			if (__instance.m_GearItem == null) return true;
+			if (Fuel.IsFuelItem(__instance.m_GearItem))
             {
                 if (Buttons.IsSelected(__instance.m_Button_Unload))
                 {

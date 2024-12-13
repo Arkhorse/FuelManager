@@ -21,7 +21,7 @@
         internal static bool IsSelected(UIButton button)
         {
             Panel_Inventory_Examine_MenuItem menuItem = button.GetComponent<Panel_Inventory_Examine_MenuItem>();
-            if (menuItem is null) return false;
+            if (menuItem == null) return false;
             return menuItem.m_Selected;
         }
 
