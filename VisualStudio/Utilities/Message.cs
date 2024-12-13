@@ -4,7 +4,6 @@ namespace FuelManager
 {
     internal class Message
     {
-        internal static Panel_OptionsMenu _Panel_OptionsMenu = new();
         internal static void SendLostMessageDelayed(ItemLiquidVolume amount)
         {
             MelonCoroutines.Start(SendDelayedLostMessageIEnumerator(amount));
@@ -12,7 +11,8 @@ namespace FuelManager
 
         private static System.Collections.IEnumerator SendDelayedLostMessageIEnumerator(ItemLiquidVolume amount)
         {
-            yield return new WaitForSeconds(1f);
+            yield return null;
+            yield return new WaitForSecondsRealtime(1f);
 
             SendLostMessageImmediate(amount);
         }
