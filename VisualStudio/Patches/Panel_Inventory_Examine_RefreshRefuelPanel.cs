@@ -8,16 +8,31 @@ namespace FuelManager
 		private static bool Prefix(Panel_Inventory_Examine __instance)
 		{
 			if (!__instance.IsPanelPatchable()) return true;
+			if (__instance.m_GearItem == null) return true;
 
-			var gi = __instance.m_GearItem;
+			GearItem gi = __instance.m_GearItem;
 
 			if (gi == null) return true;
 			if (!Fuel.IsFuelItem(gi)) return true;
 
 			Main.Logger.Log($"Current GearItem: {gi.name} is a FuelItem and is not null", FlaggedLoggingLevel.Debug);
 
-			__instance.m_RefuelPanel.SetActive(false);
-			__instance.m_Button_Refuel.gameObject.SetActive(true);
+			try
+			{
+				__instance.m_RefuelPanel.SetActive(false);
+			}
+			catch (Exception e)
+			{
+				Main.Logger.Log($"Attempting to set __instance.m_RefuelPanel not active failed", FlaggedLoggingLevel.Exception, e);
+			}
+			try
+			{
+				__instance.m_Button_Refuel.gameObject.SetActive(true);
+			}
+			catch (Exception e)
+			{
+				Main.Logger.Log($"Attempting to set __instance.m_Button_Refuel active failed", FlaggedLoggingLevel.Exception, e);
+			}
 			//bool GamePad = Utils.IsGamepadActive();
 			//__instance.m_RequiresFuelMessage.SetActive(false && GamePad);
 			//__instance.m_MouseRefuelButton.SetActive(true);
@@ -34,9 +49,22 @@ namespace FuelManager
 			bool fuelIsAvailable    = totalCurrent > ItemLiquidVolume.Zero;
 			bool flag               = fuelIsAvailable && !(currentLiters.m_Units == capacityLiters.m_Units);
 
-			__instance.m_Refuel_X.gameObject.SetActive(!flag);
-			__instance.m_Button_Refuel.gameObject.GetComponent<Panel_Inventory_Examine_MenuItem>().SetDisabled(!flag);
-
+			try
+			{
+				__instance.m_Refuel_X.gameObject.SetActive(!flag);
+			}
+			catch (Exception e)
+			{
+				Main.Logger.Log($"Attempting to set __instance.m_Refuel_X {(!flag == true ? "active" : "not active")} failed", FlaggedLoggingLevel.Exception, e);
+			}
+			try
+			{
+				__instance.m_Button_Refuel.gameObject.GetComponent<Panel_Inventory_Examine_MenuItem>().SetDisabled(!flag);
+			}
+			catch (Exception e)
+			{
+				Main.Logger.Log($"Attempting to set __instance.m_Button_Refuel {(!flag == true ? "active" : "not active")} failed", FlaggedLoggingLevel.Exception, e);
+			}
 			try
 			{
 				if (gi != null && !Fuel.IsKeroseneLamp(gi)) __instance.m_Button_RefuelBackground.SetActive(true);
@@ -45,15 +73,34 @@ namespace FuelManager
 			{
 				Main.Logger.Log($"Attempting to set the m_Button_RefuelBackground active failed", FlaggedLoggingLevel.Exception, e);
 			}
-
-			InterfaceManager.GetPanel<Panel_Inventory_Examine>().m_MouseRefuelButton.SetActive(flag);
-			__instance.m_RequiresFuelMessage.SetActive(false);
+			try
+			{
+				__instance.m_MouseRefuelButton.SetActive(flag);
+			}
+			catch (Exception e)
+			{
+				Main.Logger.Log($"Attempting to set __instance.m_Button_Refuel {(flag == true ? "active" : "not active")} failed", FlaggedLoggingLevel.Exception, e);
+			}
+			try
+			{
+				__instance.m_RequiresFuelMessage.SetActive(!flag);
+			}
+			catch (Exception e)
+			{
+				Main.Logger.Log($"Attempting to set __instance.m_Button_Refuel not active failed", FlaggedLoggingLevel.Exception, e);
+			}
 
 			__instance.m_LanternFuelAmountLabel.text = $"{Fuel.GetLiquidQuantityStringNoOunces(currentLiters)} / {Fuel.GetLiquidQuantityStringNoOunces(capacityLiters)}";
 			__instance.m_FuelSupplyAmountLabel.text = $"{Fuel.GetLiquidQuantityStringNoOunces(totalCurrent)} / {Fuel.GetLiquidQuantityStringNoOunces(totalCapacity)}";
 
-			__instance.UpdateWeightAndConditionLabels();
-
+			try
+			{
+				__instance.UpdateWeightAndConditionLabels();
+			}
+			catch (Exception e)
+			{
+				Main.Logger.Log($"Attempting to __instance.UpdateWeightAndConditionLabels() failed", FlaggedLoggingLevel.Exception, e);
+			}
 			return false; // MUST BE FALSE
 		}
 	}
