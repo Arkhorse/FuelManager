@@ -8,7 +8,7 @@ namespace FuelManager
 		#region Repair
 		public static void RefreshRepairComponent(GearItem? gi)
 		{
-			if (gi is null)
+			if (gi == null)
 			{
 				Main.Logger.Log($"Requested GearItem is null", FlaggedLoggingLevel.Debug);
 				return;
@@ -40,7 +40,7 @@ namespace FuelManager
 			bool requiresTools = true,
 			bool NeverFail = true)
 		{
-			if (gi is null) return;
+			if (gi == null) return;
 
 			//GameObject? Target = GetInstancedObject(gi);
 
@@ -73,7 +73,7 @@ namespace FuelManager
 		#region Harvest
 		public static void RefreshHarvestComponent(GearItem? gi)
 		{
-			if (gi is null)
+			if (gi == null)
 			{
 				Main.Logger.Log($"Requested GearItem is null", FlaggedLoggingLevel.Debug);
 				return;
@@ -81,7 +81,7 @@ namespace FuelManager
 
 			Harvest? harvest = gi.gameObject.GetComponent<Harvest>();
 
-			if (harvest is null)
+			if (harvest == null)
 			{
 				Main.Logger.Log($"Requested GearItem {gi.name} does not have the Repairable Component", FlaggedLoggingLevel.Debug);
 				return;
@@ -104,7 +104,7 @@ namespace FuelManager
 			int duration = 15
 			)
 		{
-			if (gi is null) return;
+			if (gi == null) return;
 
 			//GameObject? Target = GetInstancedObject(gi);
 
@@ -146,7 +146,7 @@ namespace FuelManager
 			SkillType Skill
 			)
 		{
-			if (gi is null) return;
+			if (gi == null) return;
 
 			//GameObject? Target = GetInstancedObject(gi);
 
@@ -187,7 +187,7 @@ namespace FuelManager
 										 bool isTinder,
 										 bool isWet)
 		{
-			if (gi is null) return;
+			if (gi == null) return;
 
 			//GameObject? Target = GetInstancedObject(gi);
 
