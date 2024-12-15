@@ -1,4 +1,4 @@
-﻿using Il2CppTLD.Gear;
+using Il2CppTLD.Gear;
 using Il2CppTLD.IntBackedUnit;
 
 namespace FuelManager

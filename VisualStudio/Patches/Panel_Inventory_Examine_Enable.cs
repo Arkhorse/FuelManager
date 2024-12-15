@@ -1,4 +1,4 @@
-﻿namespace FuelManager
+namespace FuelManager
 {
 	[HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.Enable), [typeof(bool), typeof(ComingFromScreenCategory)])]
 	internal class Panel_Inventory_Examine_Enable
@@ -7,6 +7,7 @@
 		{
 			if (!__instance.IsPanelPatchable()) return;
 			if (__instance.m_GearItem == null) return;
+
 			if (!enable) return;
 
 			GearItem gi = __instance.m_GearItem;

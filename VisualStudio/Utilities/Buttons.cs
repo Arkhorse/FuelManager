@@ -1,4 +1,4 @@
-﻿namespace FuelManager
+namespace FuelManager
 {
     internal static class Buttons
     {

@@ -73,7 +73,6 @@ namespace FuelManager
 				component.m_RepairAudio            = audio;
 				component.m_DurationMinutes        = duration;
 				component.m_ConditionIncrease      = ConditionIncrease;
-
 				component.m_RequiredGear           = gear;
 				component.m_RequiredGearUnits      = repairUnits;
 

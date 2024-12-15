@@ -1,4 +1,4 @@
-﻿using Il2CppTLD.IntBackedUnit;
+using Il2CppTLD.IntBackedUnit;
 
 namespace FuelManager
 {
@@ -101,6 +101,7 @@ namespace FuelManager
 			{
 				Main.Logger.Log($"Attempting to __instance.UpdateWeightAndConditionLabels() failed", FlaggedLoggingLevel.Exception, e);
 			}
+			
 			return false; // MUST BE FALSE
 		}
 	}

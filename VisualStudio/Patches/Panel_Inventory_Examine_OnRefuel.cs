@@ -1,4 +1,4 @@
-﻿namespace FuelManager
+namespace FuelManager
 {
 	[HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.OnRefuel))]
 	internal class Panel_Inventory_Examine_OnRefuel

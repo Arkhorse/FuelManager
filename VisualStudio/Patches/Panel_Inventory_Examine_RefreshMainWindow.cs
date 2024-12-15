@@ -1,4 +1,4 @@
-﻿using Il2CppTLD.IntBackedUnit;
+using Il2CppTLD.IntBackedUnit;
 
 namespace FuelManager
 {
@@ -11,7 +11,7 @@ namespace FuelManager
 			if (__instance.m_GearItem == null) return;
 
             Main.Logger.Log($"Panel is patchable, gearitem is not null", FlaggedLoggingLevel.Verbose);
-
+			
             GearItem gi = __instance.m_GearItem;
 
 			try

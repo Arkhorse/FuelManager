@@ -1,4 +1,4 @@
-﻿//namespace FuelManager
+//namespace FuelManager
 //{
 //	//[HarmonyPatch(typeof(GearItem), nameof(GearItem.Deserialize), new Type[] { typeof(GearItemSaveDataProxy) })]
 //	[HarmonyPatch(typeof(GearItem), nameof(GearItem.Awake))]
