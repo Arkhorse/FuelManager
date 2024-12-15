@@ -6,21 +6,12 @@ namespace FuelManager
 {
 	internal class Fuel
 	{
-		// Panels
-		internal static Panel_Inventory_Examine _Panel_Inventory_Examine    = new();
-		internal static Panel_OptionsMenu _Panel_OptionsMenu                = new();
-		internal static Panel_GenericProgressBar _Panel_GenericProgressBar  = new();
-
-		internal static LiquidItem _LiquidItem                              = new();
-		//KeroseneLampItem _KeroseneLampItem                                  = _Panel_Inventory_Examine.m_GearItem.GetComponent<KeroseneLampItem>();
-
 		//public static ItemLiquidVolume MIN_LITERS                           = ItemLiquidVolume.FromLiters(0.001f);
 		private const string REFUEL_AUDIO                                   = "Play_SndActionRefuelLantern";
 		internal static readonly float REFUEL_TIME                          = Settings.Instance.refuelTime;
 		//private const float REFUEL_TIME                                     = 3f;
 
 		#region Add
-
 		/// <summary>
 		/// 
 		/// </summary>
