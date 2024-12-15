@@ -8,8 +8,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<!-- Debug is useless for a mod -->
-		<DebugType>none</DebugType>
+		<DebugType>embedded</DebugType>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
 	<!-- DO NOT CHANGE ANYTHING BETWEEN THESE -->
@@ -28,9 +27,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Reference Include="ComplexLogger">
-	    <HintPath>..\..\..\Libraries\ComplexLogger.dll</HintPath>
-	  </Reference>
+		<Reference Include="ComplexLogger">
+			<HintPath>..\..\..\Libraries\ComplexLogger.dll</HintPath>
+		</Reference>
+		<!--
+		<Reference Include="ExamineActionsAPI">
+			<HintPath>O:\SteamLibrary\steamapps\common\TheLongDark\Mods\ExamineActionsAPI.dll</HintPath>
+		</Reference>
+	  -->
 	</ItemGroup>
 
 	<ItemGroup>
