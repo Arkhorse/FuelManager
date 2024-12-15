@@ -43,26 +43,43 @@ namespace FuelManager
 			if (gi == null) return;
 
 			//GameObject? Target = GetInstancedObject(gi);
-
 			//if (Target is null) return;
+			//var component = gi.gameObject.GetComponent<Repairable>();
+			//if (!(component == null)) return;
 
-			var component = gi.gameObject.GetComponent<Repairable>();
+			var component = CommonUtilities.GetOrCreateComponent<Repairable>(gi);
 
-			if (!(component == null)) return;
+			var gear = CommonUtilities.GetItems<GearItem>(requiredGear);
+			var tools = CommonUtilities.GetItems<ToolsItem>(extra);
+
+			if (component == null)
+			{
+				Main.Logger.Log($"component is null", FlaggedLoggingLevel.Critical);
+				return;
+			}
+			if (requiredGear == null || requiredGear.Length == 0)
+			{
+				Main.Logger.Log($"requiredGear is null or empty", FlaggedLoggingLevel.Critical);
+				return;
+			}
+			if (tools == null || tools.Length == 0)
+			{
+				Main.Logger.Log($"tools is null or empty", FlaggedLoggingLevel.Critical);
+				return;
+			}
 
 			try
 			{
-				Repairable repairable				= gi.gameObject.AddComponent<Repairable>();
-				repairable.m_RepairAudio            = audio;
-				repairable.m_DurationMinutes        = duration;
-				repairable.m_ConditionIncrease      = ConditionIncrease;
+				component.m_RepairAudio            = audio;
+				component.m_DurationMinutes        = duration;
+				component.m_ConditionIncrease      = ConditionIncrease;
 
-				repairable.m_RequiredGear           = CommonUtilities.GetItems<GearItem>(requiredGear);
-				repairable.m_RequiredGearUnits      = repairUnits;
+				component.m_RequiredGear           = gear;
+				component.m_RequiredGearUnits      = repairUnits;
 
-				repairable.m_RepairToolChoices      = CommonUtilities.GetItems<ToolsItem>(extra);
-				repairable.m_RequiresToolToRepair   = requiresTools;
-				repairable.m_NeverFail              = NeverFail;
+				component.m_RepairToolChoices      = tools;
+				component.m_RequiresToolToRepair   = requiresTools;
+				component.m_NeverFail              = NeverFail;
 			}
 			catch (Exception e)
 			{
@@ -107,30 +124,38 @@ namespace FuelManager
 			if (gi == null) return;
 
 			//GameObject? Target = GetInstancedObject(gi);
-
 			//if (Target is null) return;
+			//var component = gi.gameObject.GetComponent<Harvest>();
+			//if (!(component == null)) return;
 
-			var component = gi.gameObject.GetComponent<Harvest>();
+			var component = CommonUtilities.GetOrCreateComponent<Harvest>(gi);
+			var yieldgear = CommonUtilities.GetItems<GearItem>(YieldGear);
+			var tools = CommonUtilities.GetItems<ToolsItem>(RequiredTools);
 
-			if (!(component == null)) return;
-
-			try
+			if (component == null)
 			{
-				Harvest harvest					= gi.gameObject.AddComponent<Harvest>();
-				harvest.m_Audio					= audio;
-				harvest.m_DurationMinutes		= duration;
-
-				harvest.m_YieldGear				= CommonUtilities.GetItems<GearItem>(YieldGear);
-				harvest.m_YieldGearUnits		= YieldUnits;
-
-				harvest.m_AppliedSkillType		= skillType;
-				harvest.m_RequiredTools			= CommonUtilities.GetItems<ToolsItem>(RequiredTools);
+				Main.Logger.Log($"component is null", FlaggedLoggingLevel.Critical);
+				return;
 			}
-			catch (Exception e)
+			if (yieldgear == null || yieldgear.Length == 0)
 			{
-				Main.Logger.Log("Error while attempting to add Harvest Component", FlaggedLoggingLevel.Exception, e);
+				Main.Logger.Log($"yieldgear is null or empty", FlaggedLoggingLevel.Critical);
+				return;
+			}
+			if (tools == null || tools.Length == 0)
+			{
+				Main.Logger.Log($"tools is null or empty", FlaggedLoggingLevel.Critical);
+				return;
 			}
 
+			component.m_Audio = audio;
+			component.m_DurationMinutes = duration;
+
+			component.m_YieldGear = yieldgear;
+			component.m_YieldGearUnits = YieldUnits;
+
+			component.m_AppliedSkillType = skillType;
+			component.m_RequiredTools = tools;
 		}
 		#endregion
 		#region Millable
@@ -149,24 +174,40 @@ namespace FuelManager
 			if (gi == null) return;
 
 			//GameObject? Target = GetInstancedObject(gi);
-
 			//if (Target is null) return;
+			//var component = gi.gameObject.GetComponent<Millable>();
+			//if (!(component == null)) return;
 
-			var component = gi.gameObject.GetComponent<Millable>();
+			var component = CommonUtilities.GetOrCreateComponent<Millable>(gi);
+			var repair = CommonUtilities.GetItems<GearItem>(RequiredGear);
+			var restore = CommonUtilities.GetItems<GearItem>(RestoreRequiredGear);
 
-			if (!(component == null)) return;
+			if (component == null)
+			{
+				Main.Logger.Log($"component is null", FlaggedLoggingLevel.Critical);
+				return;
+			}
+			if (repair == null || repair.Length == 0)
+			{
+				Main.Logger.Log($"repair is null or empty", FlaggedLoggingLevel.Critical);
+				return;
+			}
+			if (restore == null || restore.Length == 0)
+			{
+				Main.Logger.Log($"restore is null or empty", FlaggedLoggingLevel.Critical);
+				return;
+			}
 
 			try
 			{
-				Millable millable						= gi.gameObject.AddComponent<Millable>();
-				millable.m_RepairRequiredGear			= CommonUtilities.GetItems<GearItem>(RequiredGear);
-				millable.m_RepairRequiredGearUnits		= RequiredGearUnits;
-				millable.m_RestoreRequiredGear			= CommonUtilities.GetItems<GearItem>(RestoreRequiredGear);
-				millable.m_RestoreRequiredGearUnits		= RestoreRequiredGearUnits;
-				millable.m_CanRestoreFromWornOut		= CanRestoreFromWornOut;
-				millable.m_RepairDurationMinutes		= RepairDurationMinutes;
-				millable.m_RecoveryDurationMinutes		= RecoveryDurationMinutes;
-				millable.m_Skill						= Skill;
+				component.m_RepairRequiredGear			= repair;
+				component.m_RepairRequiredGearUnits		= RequiredGearUnits;
+				component.m_RestoreRequiredGear			= restore;
+				component.m_RestoreRequiredGearUnits		= RestoreRequiredGearUnits;
+				component.m_CanRestoreFromWornOut		= CanRestoreFromWornOut;
+				component.m_RepairDurationMinutes		= RepairDurationMinutes;
+				component.m_RecoveryDurationMinutes		= RecoveryDurationMinutes;
+				component.m_Skill						= Skill;
 			}
 			catch (Exception e)
 			{
@@ -190,12 +231,7 @@ namespace FuelManager
 			if (gi == null) return;
 
 			//GameObject? Target = GetInstancedObject(gi);
-
 			//if (Target is null) return;
-
-			var component = gi.gameObject.GetComponent<FuelSourceItem>();
-
-			if (!(component == null)) return;
 
 			FuelSourceItem fuelSourceItem                   = CommonUtilities.GetOrCreateComponent<FuelSourceItem>(gi.gameObject);
 
