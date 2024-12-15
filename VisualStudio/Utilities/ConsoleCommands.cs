@@ -2,14 +2,6 @@ namespace FuelManager
 {
     public class ConsoleCommands
     {
-        private static bool GearItem_LampFuel_Harvest           = false;
-        private static bool GearItem_LampFuel_Repairable        = false;
-        private static bool GearItem_LampFuelFull_Harvest       = false;
-        private static bool GearItem_LampFuelFull_Repairable    = false;
-        private static bool GearItem_JerryCan_Harvest           = false;
-        private static bool GearItem_JerryCan_Repairable        = false;
-
-
         private static void UpdateAllGearItems()
         {
             var inv = GameManager.GetInventoryComponent();
