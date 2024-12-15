@@ -6,21 +6,12 @@ namespace FuelManager
 {
 	internal class Fuel
 	{
-		// Panels
-		internal static Panel_Inventory_Examine _Panel_Inventory_Examine    = new();
-		internal static Panel_OptionsMenu _Panel_OptionsMenu                = new();
-		internal static Panel_GenericProgressBar _Panel_GenericProgressBar  = new();
-
-		internal static LiquidItem _LiquidItem                              = new();
-		//KeroseneLampItem _KeroseneLampItem                                  = _Panel_Inventory_Examine.m_GearItem.GetComponent<KeroseneLampItem>();
-
 		//public static ItemLiquidVolume MIN_LITERS                           = ItemLiquidVolume.FromLiters(0.001f);
 		private const string REFUEL_AUDIO                                   = "Play_SndActionRefuelLantern";
 		internal static readonly float REFUEL_TIME                          = Settings.Instance.refuelTime;
 		//private const float REFUEL_TIME                                     = 3f;
 
 		#region Add
-
 		/// <summary>
 		/// 
 		/// </summary>
@@ -77,8 +68,19 @@ namespace FuelManager
 		internal static bool IsFuelContainer(GearItem gearItem)
 		{
 			if (gearItem == null) return false;
-			if (!gearItem.m_LiquidItem) return false;
-			return gearItem.m_LiquidItem.m_LiquidType == Main.GetKerosene();
+			if (gearItem.m_LiquidItem == null) return false;
+
+			bool kerosene = false;
+
+			try
+			{
+				kerosene = gearItem.m_LiquidItem.m_LiquidType == Main.GetKerosene();
+			}
+			catch (Exception e)
+			{
+				Main.Logger.Log($"Attempting to get kerosene failed\n", FlaggedLoggingLevel.Exception, e);
+			}
+			return kerosene;
 		}
 
 		/// <summary>
@@ -87,7 +89,30 @@ namespace FuelManager
 		/// <returns>True if gearItem.m_KeroseneLampItem is not null.</returns>
 		internal static bool IsKeroseneLamp(GearItem gearItem)
 		{
-			return gearItem.m_KeroseneLampItem != null;
+			bool lamp = false;
+
+			try
+			{
+				lamp = gearItem.m_KeroseneLampItem != null;
+			}
+			catch (Exception e)
+			{
+				Main.Logger.Log($"Attempting to get m_KeroseneLampItem failed\n", FlaggedLoggingLevel.Exception, e);
+			}
+
+			if (!lamp)
+			{
+				try
+				{
+					lamp = gearItem.gameObject.GetComponent<KeroseneLampItem>() != null;
+				}
+				catch (Exception e)
+				{
+					Main.Logger.Log($"Attempting to get lamp failed\n", FlaggedLoggingLevel.Exception, e);
+				}
+			}
+
+			return lamp;
 		}
 
 		/// <summary>
@@ -419,5 +444,5 @@ namespace FuelManager
 			}
 		}
 		#endregion
-	}   
+	}
 }

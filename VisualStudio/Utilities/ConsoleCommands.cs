@@ -2,23 +2,15 @@ namespace FuelManager
 {
     public class ConsoleCommands
     {
-        private static bool GearItem_LampFuel_Harvest           = false;
-        private static bool GearItem_LampFuel_Repairable        = false;
-        private static bool GearItem_LampFuelFull_Harvest       = false;
-        private static bool GearItem_LampFuelFull_Repairable    = false;
-        private static bool GearItem_JerryCan_Harvest           = false;
-        private static bool GearItem_JerryCan_Repairable        = false;
-
-
         private static void UpdateAllGearItems()
         {
             var inv = GameManager.GetInventoryComponent();
             for (int i = 0; i < inv.m_Items.Count; i++)
             {
-                if (inv.m_Items[i] is null) continue;
+                if (inv.m_Items[i] == null) continue;
                 GearItem gi = inv.m_Items[i];
 
-                if (gi is null) continue;
+                if (gi == null) continue;
 
                 if (CommonUtilities.NormalizeName(gi.name) == "GEAR_JerrycanRusty")
                 {
