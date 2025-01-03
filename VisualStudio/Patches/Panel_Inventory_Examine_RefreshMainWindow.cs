@@ -2,11 +2,11 @@ using Il2CppTLD.IntBackedUnit;
 
 namespace FuelManager
 {
-    [HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.RefreshMainWindow))]
-    internal class Panel_Inventory_Examine_RefreshMainWindow
-    {
-        private static void Postfix(Panel_Inventory_Examine __instance)
-        {
+	[HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.RefreshMainWindow))]
+	internal class Panel_Inventory_Examine_RefreshMainWindow
+	{
+		private static void Postfix(Panel_Inventory_Examine __instance)
+		{
 			if (!__instance.IsPanelPatchable()) return;
 			if (__instance.m_GearItem == null) return;
 
@@ -30,7 +30,7 @@ namespace FuelManager
 					__instance.m_Button_Unload.gameObject.SetActive(true);
 
 					ItemLiquidVolume litersToDrain = Fuel.GetLitersToDrain(gi);
-					__instance.m_Button_Unload.GetComponent<Panel_Inventory_Examine_MenuItem>().SetDisabled(litersToDrain <= ItemLiquidVolume.Zero);
+					__instance.m_Button_Unload.GetComponent<Panel_Inventory_Examine_MenuItem>().SetDisabled(litersToDrain < ItemLiquidVolume.Zero);
 				}
 			}
 			catch (Exception e)
