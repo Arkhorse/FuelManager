@@ -40,7 +40,7 @@
         "RecoveryDurationMinutes"           : 60,
         "RestoreRequiredGear"               : ["GEAR_RecycledPlastic"],
         "RestoreRequiredGearUnits"          : [6],
-        "Skill"                             : "None"
+        "Skill"                             : "ToolRepair"
     },
     "ModRepairableBehaviour": {
         "Audio"                             : "Play_RepairingMechanical",
