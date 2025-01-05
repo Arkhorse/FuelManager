@@ -11,7 +11,7 @@
         "PickUpAudio"                       : "Play_SndInvJerryCan",
         "PutBackAudio"                      : "Play_SndInvJerryCan",
         "StowAudio"                         : "Play_InventoryStow",
-        "WornOutAudio"                      : "",
+        "WornOutAudio"                      : "Play_RespiratorCanister_GearItem_WornOut",
         "InspectOnPickup"                   : true,
         "InspectDistance"                   : 0.5,
         "InspectAngles"                     : [0, 0, -0.05],
