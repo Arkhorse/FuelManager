@@ -29,6 +29,7 @@ namespace FuelManager
 
 		public override void OnInitializeMelon()
 		{
+			Setup.VerifyMCFiles();
 			Settings.OnLoad(false);
 			Spawns.AddToModComponent();
 			ConsoleCommands.RegisterCommands();
