@@ -38,7 +38,7 @@ namespace FuelManager
 			}
 			catch (Exception e)
 			{
-				Main.Logger.Log($"Attempting to ", FlaggedLoggingLevel.Exception, e);
+				Main.Logger.Log($"Attempting to drain failed\n", FlaggedLoggingLevel.Exception, e);
 			}
 			return true;
 		}
