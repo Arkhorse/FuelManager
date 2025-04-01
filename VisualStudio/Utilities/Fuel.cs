@@ -132,7 +132,7 @@ namespace FuelManager
 		/// </summary>
 		internal static string GetLiquidQuantityString(ItemLiquidVolume quantityLiters)
 		{
-			return quantityLiters.ToString();
+			return quantityLiters.ToStringMetric();
 		}
 
 		/// <summary>
@@ -140,7 +140,7 @@ namespace FuelManager
 		/// </summary>
 		internal static string GetLiquidQuantityStringNoOunces(ItemLiquidVolume quantityLiters)
 		{
-			return quantityLiters.ToString();
+			return quantityLiters.ToStringMetric();
 		}
 
 		/// <summary>
@@ -148,7 +148,7 @@ namespace FuelManager
 		/// </summary>
 		internal static string GetLiquidQuantityStringWithUnits(ItemLiquidVolume quantityLiters)
 		{
-			return quantityLiters.ToString();
+			return quantityLiters.ToStringMetric();
 		}
 
 		/// <summary>
@@ -156,7 +156,7 @@ namespace FuelManager
 		/// </summary>
 		internal static string GetLiquidQuantityStringWithUnitsNoOunces(ItemLiquidVolume quantityLiters)
 		{
-			return quantityLiters.ToString();
+			return quantityLiters.ToStringMetric();
 		}
 
 		/// <summary>
