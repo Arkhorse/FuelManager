@@ -6,6 +6,7 @@ namespace FuelManager
 {
 	internal class Fuel
 	{
+#pragma warning disable CS8603
 		//public static ItemLiquidVolume MIN_LITERS                           = ItemLiquidVolume.FromLiters(0.001f);
 		private const string REFUEL_AUDIO                                   = "Play_SndActionRefuelLantern";
 		internal static readonly float REFUEL_TIME                          = Settings.Instance.refuelTime;
@@ -219,7 +220,7 @@ namespace FuelManager
 
 			foreach (GameObject eachItem in GameManager.GetInventoryComponent().m_Items)
 			{
-				GearItem? gearItem = eachItem?.GetComponent<GearItem>();
+				GearItem gearItem = eachItem.GetComponent<GearItem>();
 				if (gearItem == null || gearItem == excludeItem || !IsFuelContainer(gearItem))
 				{
 					continue;
@@ -287,7 +288,7 @@ namespace FuelManager
 
 		public static void Drain(GearItem gi, bool RestoreInHands, Panel_Inventory_Examine? panel = null)
 		{
-			GearItem? Target;
+			GearItem Target;
 			if (panel == null)
 			{
 				Target = gi;
@@ -350,7 +351,7 @@ namespace FuelManager
 		/// <param name="panel"></param>
 		public static void Refuel(GearItem gi, bool RestoreInHands, Panel_Inventory_Examine? panel = null)
 		{
-			GearItem? Target;
+			GearItem Target;
 			if (panel == null)
 			{
 				Target = gi;
@@ -416,7 +417,7 @@ namespace FuelManager
 
 		private static void OnDrainFinished(bool success, bool playerCancel, float progress)
 		{
-			GearItem? Target = Main.Target;
+			GearItem Target = Main.Target;
 
 			if (Target != null && IsFuelItem(Target))
 			{
@@ -431,7 +432,7 @@ namespace FuelManager
 
 		private static void OnRefuelFinished(bool success, bool playerCancel, float progress)
 		{
-			GearItem? Target = Main.Target;
+			GearItem Target = Main.Target;
 
 			if (Target != null && IsFuelItem(Target))
 			{
