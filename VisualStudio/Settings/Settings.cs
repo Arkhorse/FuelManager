@@ -6,148 +6,153 @@ using RadialMenuUtilities;
 
 namespace FuelManager
 {
-    internal class Settings : JsonModSettings
-    {
-        internal static bool RadialOverride { get; set; } = false;
-        internal static Settings Instance { get; } = new();
+	internal class Settings : JsonModSettings
+	{
+		internal static bool RadialOverride { get; set; } = false;
+		internal static Settings Instance { get; } = new();
 #if RMU
-        internal static CustomRadialMenu? radialMenu { get; set; }
+		internal static CustomRadialMenu? radialMenu { get; set; }
 
-        internal static List<string> GearNames { get; } = new List<string>
-        { "GEAR_GasCan", "GEAR_JerrycanRusty", "GEAR_LampFuel", "GEAR_LampFuelFull" };
+		internal static List<string> GearNames { get; } = new List<string>
+		{ "GEAR_GasCan", "GEAR_JerrycanRusty", "GEAR_LampFuel", "GEAR_LampFuelFull" };
 
 
-        internal static List<GearItem> GearItems { get; set; } = new();
+		internal static List<GearItem> GearItems { get; set; } = new();
 
-        [Section("Gameplay Settings")]
-        [Name("Use Radial Menu")]
-        [Description("Enables a new radial menu for you to easily access your fuel containers.")]
-        public bool enableRadial = false;
+		[Section("Gameplay Settings")]
+		[Name("Use Radial Menu")]
+		[Description("Enables a new radial menu for you to easily access your fuel containers.")]
+		public bool enableRadial = false;
 
-        [Name("Key for Radial Menu")]
-        [Description("The key you press to show the new menu.")]
-        public KeyCode keyCode = KeyCode.G;
+		[Name("Key for Radial Menu")]
+		[Description("The key you press to show the new menu.")]
+		public KeyCode keyCode = KeyCode.G;
 #endif
-        [Section("Kerosene Lamp refueling")]
+		[Section("Kerosene Lamp refueling")]
 
-        [Name("Enable")]
-        [Description("If your holding a lamp and all other conditions are met, this will refuel the lamp when you press the hotkey below")]
-        public bool EnableRefuelLampKey = false;
+		[Name("Enable")]
+		[Description("If your holding a lamp and all other conditions are met, this will refuel the lamp when you press the hotkey below")]
+		public bool EnableRefuelLampKey = false;
 
-        [Name("Refuel Lamp Hotkey")]
-        public KeyCode RefuelLampKey = KeyCode.R;
+		[Name("Refuel Lamp Hotkey")]
+		public KeyCode RefuelLampKey = KeyCode.R;
 
-        [Section("Main")]
+		[Section("Main")]
 
-        [Name("Refuel Time")]
-        [Description("How much time it takes to refuel/ drain, in seconds. Default: 3")]
-        [Slider(1f, 60f, 240)]
-        public float refuelTime = 3f;
-        /*
-        [Name("Amount of water to consume when extinguishing fires")]
-        //[Description("")]
-        [Slider(0.1f, 10f)]
-        public float waterToExtinguishFire = 0.1f;
+		[Name("Refuel Time")]
+		[Description("How much time it takes to refuel/ drain, in seconds. Default: 3")]
+		[Slider(3f, 60f, 240)]
+		public float refuelTime = 3f;
 
-        [Name("Use Non Potable Water")]
-        [Description("Will use dirty water first if there is any")]
-        public bool UseNonPotableWaterSupply = false;
-        */
+		//[Name("Prevent losing kerosene when you harvest")]
+		//[Description("")]
+		//public bool PreventLossWhenHarvesting = false;
 
-        [Section("Spawn Settings")]
+		/*
+		[Name("Amount of water to consume when extinguishing fires")]
+		//[Description("")]
+		[Slider(0.1f, 10f)]
+		public float waterToExtinguishFire = 0.1f;
 
-        [Name("Pilgram / Very High Loot Custom")]
-        [Description("Setting to zero disables them on this game mode")]
-        [Slider(0f, 100f, 101)]
-        public float pilgramSpawnExpectation = 70f;
+		[Name("Use Non Potable Water")]
+		[Description("Will use dirty water first if there is any")]
+		public bool UseNonPotableWaterSupply = false;
+		*/
 
-        [Name("Voyager / High Loot Custom")]
-        [Description("Setting to zero disables them on this game mode")]
-        [Slider(0f, 100f, 101)]
-        public float voyagerSpawnExpectation = 40f;
+		[Section("Spawn Settings")]
 
-        [Name("Stalker / Medium Loot Custom")]
-        [Description("Setting to zero disables them on this game mode")]
-        [Slider(0f, 100f, 101)]
-        public float stalkerSpawnExpectation = 20f;
+		[Name("Pilgram / Very High Loot Custom")]
+		[Description("Setting to zero disables them on this game mode")]
+		[Slider(0f, 100f, 101)]
+		public float pilgramSpawnExpectation = 70f;
 
-        [Name("Interloper / Low Loot Custom")]
-        [Description("Setting to zero disables them on this game mode")]
-        [Slider(0f, 100f, 101)]
-        public float interloperSpawnExpectation = 8f;
+		[Name("Voyager / High Loot Custom")]
+		[Description("Setting to zero disables them on this game mode")]
+		[Slider(0f, 100f, 101)]
+		public float voyagerSpawnExpectation = 40f;
 
-        [Name("Challenges")]
-        [Description("Setting to zero disables them on this game mode")]
-        [Slider(0f, 100f, 101)]
-        public float challengeSpawnExpectation = 50f;
+		[Name("Stalker / Medium Loot Custom")]
+		[Description("Setting to zero disables them on this game mode")]
+		[Slider(0f, 100f, 101)]
+		public float stalkerSpawnExpectation = 20f;
 
-        //[Section("Fuel Items")]
+		[Name("Interloper / Low Loot Custom")]
+		[Description("Setting to zero disables them on this game mode")]
+		[Slider(0f, 100f, 101)]
+		public float interloperSpawnExpectation = 8f;
 
-        //[Name("")]
-        //[Description("")]
-        //public bool AddFuelTo = false;
+		[Name("Challenges")]
+		[Description("Setting to zero disables them on this game mode")]
+		[Slider(0f, 100f, 101)]
+		public float challengeSpawnExpectation = 50f;
 
-        protected override void OnConfirm()
-        {
-            Refresh();
-            base.OnConfirm();
-        }
+		//[Section("Fuel Items")]
+
+		//[Name("")]
+		//[Description("")]
+		//public bool AddFuelTo = false;
+
+		protected override void OnConfirm()
+		{
+			Refresh();
+			base.OnConfirm();
+		}
 #if RMU
-        private void ConstructRadialArm(bool enable)
-        {
-            RadialOverride = enable;
-            if (!enable) return;
+		private void ConstructRadialArm(bool enable)
+		{
+			RadialOverride = enable;
+			if (!enable) return;
 
-            try
-            {
-                radialMenu = new CustomRadialMenu(
-                    GearNames,
-                    Instance.keyCode,
-                    CustomRadialMenuType.AllOfEach,
-                    Instance.enableRadial,
-                    BuildInfo.GUIName
-                    );
+			try
+			{
+				radialMenu = new CustomRadialMenu(
+					GearNames,
+					Instance.keyCode,
+					CustomRadialMenuType.AllOfEach,
+					Instance.enableRadial,
+					BuildInfo.GUIName
+					);
 
-                radialMenu!.SetValues(keyCode, enableRadial);
-            }
-            catch (MissingMethodException)
-            {
-                if (RadialOverride) return;
-                else
-                {
-                    Main.Logger.LogError("MissingMethodException: Either your missing RadialMenuUtilies or your version of this mod or RMU is outdated", Color.red);
-                    throw;
-                }
-            }
-            catch
-            {
-                Main.Logger.LogError($"Threw exception while attempting to create new radial menu");
-                throw;
-            }
-        }
+				radialMenu!.SetValues(keyCode, enableRadial);
+			}
+			catch (MissingMethodException)
+			{
+				if (RadialOverride) return;
+				else
+				{
+					Main.Logger.LogError("MissingMethodException: Either your missing RadialMenuUtilies or your version of this mod or RMU is outdated", Color.red);
+					throw;
+				}
+			}
+			catch
+			{
+				Main.Logger.LogError($"Threw exception while attempting to create new radial menu");
+				throw;
+			}
+		}
 #endif
-        private void Refresh()
-        {
-            SetFieldVisible(nameof(refuelTime), true);
-            SetFieldVisible(nameof(pilgramSpawnExpectation), true);
-            SetFieldVisible(nameof(voyagerSpawnExpectation), true);
-            SetFieldVisible(nameof(stalkerSpawnExpectation), true);
-            SetFieldVisible(nameof(interloperSpawnExpectation), true);
-            SetFieldVisible(nameof(challengeSpawnExpectation), true);
+		private void Refresh()
+		{
+			SetFieldVisible(nameof(refuelTime), true);
+			SetFieldVisible(nameof(pilgramSpawnExpectation), true);
+			SetFieldVisible(nameof(voyagerSpawnExpectation), true);
+			SetFieldVisible(nameof(stalkerSpawnExpectation), true);
+			SetFieldVisible(nameof(interloperSpawnExpectation), true);
+			SetFieldVisible(nameof(challengeSpawnExpectation), true);
 
 #if RMU
-            SetFieldVisible(nameof(enableRadial), !RadialOverride);
-            SetFieldVisible(nameof(keyCode), !RadialOverride);
+			SetFieldVisible(nameof(enableRadial), !RadialOverride);
+			SetFieldVisible(nameof(keyCode), !RadialOverride);
 #endif
-        }
+		}
 
-        internal static void OnLoad(bool EnableRadial)
-        {
-            Instance.AddToModSettings(BuildInfo.GUIName);
+		internal static void OnLoad(bool EnableRadial)
+		{
+			Instance.AddToModSettings(BuildInfo.GUIName);
 #if RMU
-            Instance.ConstructRadialArm(EnableRadial);
+			Instance.ConstructRadialArm(EnableRadial);
 #endif
-            Instance.RefreshGUI();
-        }
-    }
+			Instance.RefreshGUI();
+		}
+	}
 }
