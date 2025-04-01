@@ -11,18 +11,18 @@ namespace FuelManager
 			if (!enable) return;
 
 			GearItem gi = __instance.m_GearItem;
-			bool fuel = false;
+			bool IsFuelItem = false;
 
 			try
 			{
-				fuel = Fuel.IsFuelItem(gi);
+				IsFuelItem = Fuel.IsFuelItem(gi);
 			}
 			catch (Exception e)
 			{
 				Main.Logger.Log($"Enable Attempting to get IsFuelItem failed\n", FlaggedLoggingLevel.Exception, e);
 			}
 
-			if (fuel)
+			if (IsFuelItem)
 			{
 				try
 				{
