@@ -46,7 +46,7 @@ namespace FuelManager
 			ItemLiquidVolume totalCurrent      = Fuel.GetTotalCurrentLiters(gi);
 			ItemLiquidVolume totalCapacity     = Fuel.GetTotalCapacityLiters(gi);
 
-			bool fuelIsAvailable    = totalCurrent > ItemLiquidVolume.Zero;
+			bool fuelIsAvailable    = totalCurrent > ItemLiquidVolume.Zero; // must be >, not >=
 			bool flag               = fuelIsAvailable && !(currentLiters.m_Units == capacityLiters.m_Units);
 
 			try
