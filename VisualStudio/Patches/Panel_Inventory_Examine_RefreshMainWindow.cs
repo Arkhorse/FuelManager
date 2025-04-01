@@ -10,6 +10,7 @@ namespace FuelManager
 			if (!__instance.IsPanelPatchable()) return;
 			if (__instance.m_GearItem == null) return;
 
+<<<<<<< Updated upstream
 			Main.Logger.Log($"Panel is patchable, gearitem is not null", FlaggedLoggingLevel.Debug);
 			
 			GearItem gi = __instance.m_GearItem;
@@ -27,6 +28,11 @@ namespace FuelManager
 				NullRecord.Clear();
 				return;
 			}
+=======
+			Main.Logger.Log($"Panel is patchable, gearitem is not null", FlaggedLoggingLevel.Verbose);
+
+			GearItem gi = __instance.m_GearItem;
+>>>>>>> Stashed changes
 
 			try
 			{
@@ -52,11 +58,15 @@ namespace FuelManager
 					__instance.m_Button_Unload.gameObject.SetActive(true);
 
 					ItemLiquidVolume litersToDrain = Fuel.GetLitersToDrain(gi);
+<<<<<<< Updated upstream
 
 					bool thing = litersToDrain < ItemLiquidVolume.Zero; // must be <, not <=
 
 					__instance.m_Button_Unload.GetComponent<Panel_Inventory_Examine_MenuItem>().SetDisabled(thing);
 					Main.Logger.Log($"DEBUG DATA:\n\tPosition: {position}\n\tDrained: {litersToDrain}\n\tSetDisabled: {thing}", FlaggedLoggingLevel.Debug);
+=======
+					__instance.m_Button_Unload.GetComponent<Panel_Inventory_Examine_MenuItem>().SetDisabled(litersToDrain < ItemLiquidVolume.Zero);
+>>>>>>> Stashed changes
 				}
 			}
 			catch (Exception e)
