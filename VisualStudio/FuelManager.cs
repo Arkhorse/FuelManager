@@ -59,7 +59,7 @@ namespace FuelManager
 
 					if (InputManager.GetKeyDown(InputManager.m_CurrentContext, Settings.Instance.RefuelLampKey))
 					{
-						Logger.Log($"Current Context: {InputManager.m_CurrentContext.name}", FlaggedLoggingLevel.Debug);
+						//Logger.Log($"Current Context: {InputManager.m_CurrentContext.name}", FlaggedLoggingLevel.Debug);
 						Fuel.Refuel(gi, false, null);
 					}
 				}
