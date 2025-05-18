@@ -3,9 +3,9 @@ namespace FuelManager
 	[HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.UpdateButtonLegend))]
 	internal class Panel_Inventory_Examine_UpdateButtonLegend
 	{
-		private static void Postfix(Panel_Inventory_Examine __instance)
+		private static void Postfix(ref Panel_Inventory_Examine __instance)
 		{
-			if (!__instance.IsPanelPatchable()) return;
+			if (!__instance.IsPanelPatchable(out string reason)) return;
 			if (__instance.m_GearItem == null) return;
 
 			GearItem gi = __instance.m_GearItem;
