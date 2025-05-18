@@ -5,11 +5,13 @@ namespace FuelManager
 	[HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.RefreshRefuelPanel))]
 	internal class Panel_Inventory_Examine_RefreshRefuelPanel
 	{
-		private static bool Prefix(Panel_Inventory_Examine __instance)
+		private static bool Prefix(ref Panel_Inventory_Examine __instance)
 		{
-			if (!__instance.IsPanelPatchable()) return true;
-			if (__instance.m_GearItem == null) return true;
-
+			if (!__instance.IsPanelPatchable(out string reason))
+			{
+				Main.Logger.Log($"Attempting to patch {nameof(Panel_Inventory_Examine.RefreshRefuelPanel)} failed. Reason: {reason}", FlaggedLoggingLevel.Verbose);
+				return true;
+			}
 			GearItem gi = __instance.m_GearItem;
 
 			if (gi == null) return true;
@@ -46,7 +48,7 @@ namespace FuelManager
 			ItemLiquidVolume totalCurrent      = Fuel.GetTotalCurrentLiters(gi);
 			ItemLiquidVolume totalCapacity     = Fuel.GetTotalCapacityLiters(gi);
 
-			bool fuelIsAvailable    = totalCurrent > ItemLiquidVolume.Zero; // must be >, not >=
+			bool fuelIsAvailable    = !Constants.Empty(totalCurrent);
 			bool flag               = fuelIsAvailable && !(currentLiters.m_Units == capacityLiters.m_Units);
 
 			try
@@ -90,8 +92,8 @@ namespace FuelManager
 				Main.Logger.Log($"Attempting to set __instance.m_Button_Refuel not active failed", FlaggedLoggingLevel.Exception, e);
 			}
 
-			__instance.m_LanternFuelAmountLabel.text = $"{Fuel.GetLiquidQuantityStringNoOunces(currentLiters)} / {Fuel.GetLiquidQuantityStringNoOunces(capacityLiters)}";
-			__instance.m_FuelSupplyAmountLabel.text = $"{Fuel.GetLiquidQuantityStringNoOunces(totalCurrent)} / {Fuel.GetLiquidQuantityStringNoOunces(totalCapacity)}";
+			__instance.m_LanternFuelAmountLabel.text = $"{Fuel.GetLiquidQuantityString(currentLiters)} / {Fuel.GetLiquidQuantityString(capacityLiters)}";
+			__instance.m_FuelSupplyAmountLabel.text = $"{Fuel.GetLiquidQuantityString(totalCurrent)} / {Fuel.GetLiquidQuantityString(totalCapacity)}";
 
 			try
 			{
