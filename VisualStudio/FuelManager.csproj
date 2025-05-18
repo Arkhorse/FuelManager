@@ -42,11 +42,9 @@
 		<Reference Include="ComplexLogger">
 			<HintPath>$(Libraries)\ComplexLogger.dll</HintPath>
 		</Reference>
-		<!--
 		<Reference Include="ExamineActionsAPI">
-			<HintPath>O:\SteamLibrary\steamapps\common\TheLongDark\Mods\ExamineActionsAPI.dll</HintPath>
+			<HintPath>$(Libraries)\ExamineActionsAPI.dll</HintPath>
 		</Reference>
-	  -->
 	</ItemGroup>
 
 	<ItemGroup>
