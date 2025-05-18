@@ -1,5 +1,3 @@
-using Il2CppTLD.IntBackedUnit;
-
 namespace FuelManager
 {
 	public class ConsoleCommands
@@ -39,37 +37,69 @@ namespace FuelManager
 		public static void TestStrings()
 		{
 			Main.Logger.Log("Test Strings Called", FlaggedLoggingLevel.Always, LoggingSubType.uConsole);
-			for (int i = 0; i < GameManager.GetInventoryComponent().m_Items.Count; i++)
+			StringBuilder sb = new();
+
+			//for (int i = 0; i < GameManager.GetInventoryComponent().m_Items.Count; i++)
+			//{
+			//	GearItem gi = GameManager.GetInventoryComponent().m_Items[i];
+			//	if (gi == null) continue;
+			//	if (string.IsNullOrWhiteSpace(gi.name)) continue;
+			//	string name = CommonUtilities.NormalizeName(gi.name);
+
+			//	if (Fuel.IsFuelItem(gi))
+			//	{
+			//		sb.AppendLine($"Current Object: {name}");
+
+
+			//		break; // only want this to happen once
+			//	}
+			//}
+
+			int result = Fuel.GetUserMetric();
+
+			sb.AppendLine("Get Used Metric Key:\n");
+			sb.Append("\t\t1: Metric");
+			sb.Append("\t\t2: Imperial");
+			sb.Append("\t\t-1: Panel_OptionsMenu is null");
+			sb.Append("\t\t-2: DisplayMenuItems is null");
+			sb.Append("\t\t-3: Units GameObject is null");
+			sb.Append("\t\t-4: ComboBox is null");
+
+			string thing = "";
+
+			switch (result)
 			{
-				GearItem gi = GameManager.GetInventoryComponent().m_Items[i];
-				if (gi == null) continue;
-				if (string.IsNullOrWhiteSpace(gi.name)) continue;
-				string name = CommonUtilities.NormalizeName(gi.name);
-				if (name == "GEAR_JerrycanRusty")
-				{
-					ItemLiquidVolume thing = gi.gameObject.GetComponent<LiquidItem>().m_Liquid;
-
-					StringBuilder sb = new();
-					sb.AppendLine("Current Value: ");
-					sb.Append(Fuel.GetLiquidQuantityString(thing));
-					sb.AppendLine("New Value Metric: ");
-					sb.Append(thing.ToStringMetric());
-					sb.AppendLine("New Value Gallons: ");
-					sb.Append(thing.ToStringImperialGallons());
-					sb.AppendLine("New Value Ounces: ");
-					sb.Append(thing.ToStringImperialOunces());
-
-					Main.Logger.Log("Testing Strings", FlaggedLoggingLevel.Always, LoggingSubType.IntraSeparator);
-					Main.Logger.Log(sb.ToString(), FlaggedLoggingLevel.Always);
-					Main.Logger.Log(FlaggedLoggingLevel.Always, LoggingSubType.Separator);
-				}
+				case 1:
+					thing = "\t\tX";
+					break;
+				case 2:
+					thing = "\t\t\t\tX";
+					break;
+				case -1:
+					thing = "\t\t\t\t\t\tX";
+					break;
+				case -2:
+					thing = "\t\t\t\t\t\t\t\tX";
+					break;
+				case -3:
+					thing = "\t\t\t\t\t\t\t\t\t\tX";
+					break;
+				case -4:
+					thing = "\t\t\t\t\t\t\t\t\t\t\t\tX";
+					break;
 			}
+
+			sb.AppendLine(thing);
+
+			Main.Logger.Log("Testing Strings", FlaggedLoggingLevel.Always, LoggingSubType.IntraSeparator);
+			Main.Logger.Log(sb.ToString(), FlaggedLoggingLevel.Always);
+			Main.Logger.Log(FlaggedLoggingLevel.Always, LoggingSubType.Separator);
 		}
 
 		public static void RegisterCommands()
 		{
 			uConsole.RegisterCommand("FM_PrintChangeLogs", new Action(PatchNotes.PrintChangeLog));
-			uConsole.RegisterCommand("UpdateAllGearItems", new Action(UpdateAllGearItems));
+			uConsole.RegisterCommand("FM_DEBUG_UpdateAllGearItems", new Action(UpdateAllGearItems));
 			uConsole.RegisterCommand("FM_TESTSTRINGS", new Action(TestStrings));
 		}
 	}
