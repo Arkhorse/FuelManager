@@ -7,7 +7,7 @@
 		{
 			if (gi == null) return true;
 
-			Main.Logger.Log($"ItemDescriptionPage.CanExamine:: Result before change is: {__result}, GearItem: {gi.name}", FlaggedLoggingLevel.Debug);
+			Main.Logger.Log($"Result before change is: {__result}, GearItem: {gi.name}", FlaggedLoggingLevel.Debug, memberName: "ItemDescriptionPage.CanExamine");
 
 			if (Fuel.IsFuelItem(gi))
 			{
