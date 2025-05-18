@@ -8,7 +8,7 @@
         /// <summary>Who made the mod</summary>
         public const string Author = "The Illusion";
         /// <summary>Current version (Using Major.Minor.Build) </summary>
-        public const string Version = "1.2.17";
+        public const string Version = "1.2.2";
         /// <summary>Name used on GUI's, like ModSettings</summary>
         public const string GUIName = "Fuel Manager";
         #endregion
