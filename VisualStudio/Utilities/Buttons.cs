@@ -3,7 +3,7 @@ namespace FuelManager
 	internal static class Buttons
 	{
 #pragma warning disable CS8603
-		internal static Vector3 GetBottomPosition(params Component[] components)
+		internal static Vector3 GetBottomPosition(float spacing, params Component[] components)
 		{
 			Vector3 result = new(0, 1000, 0);
 
@@ -11,7 +11,7 @@ namespace FuelManager
 			{
 				foreach (Component eachComponent in components)
 				{
-					if (eachComponent.gameObject.activeSelf && result.y > eachComponent.transform.localPosition.y)
+					if (eachComponent != null && eachComponent.gameObject.activeSelf && result.y > eachComponent.transform.localPosition.y)
 					{
 						result = eachComponent.transform.localPosition;
 					}
@@ -19,11 +19,13 @@ namespace FuelManager
 			}
 			catch (Exception e)
 			{
-				Main.Logger.Log($"Attempting to set the bottom position failed, the result is {result}, original is {{0, 1000, 0}}", FlaggedLoggingLevel.Exception, e);
+				Main.Logger.Log($"Attempting to get the bottom position of the panel buttons had an exception, the result is {result}, original is {{0, 1000, 0}}", FlaggedLoggingLevel.Exception, e);
 			}
+
+			result.y += spacing;
+
 			return result;
 		}
-
 		internal static bool IsSelected(UIButton button)
 		{
 			Panel_Inventory_Examine_MenuItem menuItem = button.GetComponent<Panel_Inventory_Examine_MenuItem>();
@@ -82,12 +84,13 @@ namespace FuelManager
 		internal static void SetUnloadButtonLabel(Panel_Inventory_Examine panel, string localizationKey)
 		{
 			if (panel == null) return;
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8604 // Possible null reference argument.
-			GameObject unloadPanel = GetChild(panel.m_ExamineWidget.gameObject, "UnloadRiflePanel");
-#pragma warning restore CS8604 // Possible null reference argument.
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-			SetButtonLocalizationKey(gameObject: unloadPanel, localizationKey);
+			GameObject UnloadPanel = GetChild(panel.m_ExamineWidget.gameObject, "UnloadRiflePanel");
+			if (UnloadPanel == null)
+			{
+				Main.Logger.Log($"Unable to set label as UnloadPanel is currently null. Assoiciated lockey: {localizationKey}", FlaggedLoggingLevel.Debug);
+				return;
+			}
+			SetButtonLocalizationKey(gameObject: UnloadPanel, localizationKey);
 		}
 	}
 }
