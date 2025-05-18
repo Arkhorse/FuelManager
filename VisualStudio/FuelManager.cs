@@ -1,16 +1,11 @@
-﻿global using ComplexLogger;
-
-global using FuelManager.Utilities;
-
-using Il2CppTLD.Gear;
-using Il2CppTLD.IntBackedUnit;
-
-namespace FuelManager
+﻿namespace FuelManager
 {
 	public class Main : MelonMod
 	{
-		public static GearItem? Target { get; set; }
-		public static float MIN_LITERS { get; } = 0.001f;
+#pragma warning disable CS8618, CA2211
+		public static GearItem Target;
+#pragma warning restore CS8618, CA2211
+		[Obsolete("Use ItemLiquidVolume.Zero instead")]
 		public static ItemLiquidVolume MIN_LITERS_VOLUME { get; } = ItemLiquidVolume.FromLiters(0.001f);
 		public static string REFUEL_AUDIO { get; } = "Play_SndActionRefuelLantern";
 		internal static ComplexLogger<Main> Logger { get; } = new();
@@ -29,6 +24,7 @@ namespace FuelManager
 
 		public override void OnInitializeMelon()
 		{
+			Setup.VerifyMCFiles();
 			Settings.OnLoad(false);
 			Spawns.AddToModComponent();
 			ConsoleCommands.RegisterCommands();
@@ -64,7 +60,10 @@ namespace FuelManager
 					}
 				}
 			}
-			catch { }
+			catch (Exception e)
+			{
+				Logger.Log($"Attempting to handle refueling lamps VIA hotkey {Settings.Instance.RefuelLampKey} failed: ", FlaggedLoggingLevel.Verbose|FlaggedLoggingLevel.Exception, e);
+			}
 		}
 	}
 }

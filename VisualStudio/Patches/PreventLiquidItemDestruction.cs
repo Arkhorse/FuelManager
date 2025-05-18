@@ -1,40 +1,43 @@
-﻿namespace FuelManager
-{
-	using System;
-	using Il2Cpp;
-	using HarmonyLib;
-	using UnityEngine;
-	using Il2CppTLD.Gear;
-	using Il2CppTLD.IntBackedUnit;
+﻿using Il2CppTLD.Gear;
+using Il2CppTLD.IntBackedUnit;
 
+namespace FuelManager
+{
 	public static class PreventLiquidItemDestruction
 	{
 		internal static int deductLiquidFromInventoryCallDepth = 0;
 
-		[HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.DeductLiquidFromInventory), new Type[] { typeof(ItemLiquidVolume), typeof(LiquidType) })]
+		[HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.DeductLiquidFromInventory), [typeof(ItemLiquidVolume), typeof(LiquidType)])]
 		public static class PlayerManager_DeductLiquidFromInventory
 		{
 			private static void Prefix()
 			{
 				deductLiquidFromInventoryCallDepth++;
+				Main.Logger.Log($"deductLiquidFromInventoryCallDepth: {deductLiquidFromInventoryCallDepth}", FlaggedLoggingLevel.Debug);
 			}
 			private static void Postfix()
 			{
 				deductLiquidFromInventoryCallDepth--;
+				Main.Logger.Log($"deductLiquidFromInventoryCallDepth: {deductLiquidFromInventoryCallDepth}", FlaggedLoggingLevel.Debug);
 			}
 		}
 
-		[HarmonyPatch(typeof(Inventory), nameof(Inventory.DestroyGear), new Type[] { typeof(GameObject) })]
+		[HarmonyPatch(typeof(Inventory), nameof(Inventory.DestroyGear), [typeof(GameObject)])]
 		public static class Inventory_DestroyGear
 		{
 			// this prevents the patch from occuring if the var is not greater than 0
-			public static bool Prepare()
-			{
-				return deductLiquidFromInventoryCallDepth > 0;
-			}
+			//public static bool Prepare()
+			//{
+			//	return deductLiquidFromInventoryCallDepth > 0;
+			//}
 
-			public static bool Prefix(GameObject go)
+			public static bool Prefix(ref Inventory __instance, ref GameObject go)
 			{
+				if (__instance == null) return true;
+				if (go == null) return true;
+				if (string.IsNullOrWhiteSpace(go.name)) return true;
+
+				Main.Logger.Log($"Inventory.DestroyGear(GameObject go): Name: {go.name}", FlaggedLoggingLevel.Debug);
 				LiquidItem liquidItem = go.GetComponent<LiquidItem>();
 
 				if (liquidItem != null && liquidItem.LiquidType == Main.GetKerosene())
@@ -43,6 +46,19 @@
 				}
 
 				return true;
+			}
+		}
+
+		[HarmonyPatch(typeof(Inventory), nameof(Inventory.DestroyGear), [typeof(GearItem)])]
+		public class Inventory_DestroyGear_GearItem
+		{
+			public static void Prefix(Inventory __instance, ref GearItem gi)
+			{
+				if (__instance == null) return;
+				if (gi == null) return;
+				if (string.IsNullOrWhiteSpace(gi.name)) return;
+
+				Main.Logger.Log($"Inventory.DestroyGear(GearItem gi): Name: {gi.name}", FlaggedLoggingLevel.Debug);
 			}
 		}
 	}

@@ -1,6 +1,4 @@
-﻿using Il2CppTLD.IntBackedUnit;
-
-namespace FuelManager
+﻿namespace FuelManager
 {
     internal class Message
     {
@@ -22,7 +20,7 @@ namespace FuelManager
             GearMessage.AddMessage(
                 "GEAR_JerrycanRusty",
                 Localization.Get("GAMEPLAY_BFM_Lost"),
-                $"{Localization.Get("GAMEPLAY_Kerosene")}, {Fuel.GetLiquidQuantityStringWithUnitsNoOunces(amount)}",
+                $"{Localization.Get("GAMEPLAY_Kerosene")}, {Fuel.GetLiquidQuantityString(amount)}",
                 Color.red,
                 false
                 );

@@ -1,22 +1,98 @@
-﻿using Il2CppNodeCanvas.Tasks.Actions;
-using Il2CppTLD.Gear;
-using Il2CppTLD.IntBackedUnit;
-
-namespace FuelManager
+﻿namespace FuelManager
 {
 	internal class Fuel
 	{
+#pragma warning disable CS8603
 		//public static ItemLiquidVolume MIN_LITERS                           = ItemLiquidVolume.FromLiters(0.001f);
 		private const string REFUEL_AUDIO                                   = "Play_SndActionRefuelLantern";
 		internal static readonly float REFUEL_TIME                          = Settings.Instance.refuelTime;
 		//private const float REFUEL_TIME                                     = 3f;
+		private static int ExpectedUnitsCount { get; }						= 2;
+
+		public static bool GetGearItemFromInventory(string? pattern, bool fuelitem, [NotNullWhen(true)] out GearItem gi, [NotNullWhen(true)] out string name)
+		{
+			Inventory inventory = GameManager.GetInventoryComponent();
+			name = null;
+			gi = null;
+			if (inventory != null)
+			{
+				Il2CppCollections.List<GearItemObject> items = inventory.m_Items;
+				foreach (GearItemObject item in items)
+				{
+					if (item != null)
+					{
+						GearItem gearItem = item.m_GearItem;
+						if (gearItem != null)
+						{
+							if (!string.IsNullOrWhiteSpace(pattern))
+							{
+								string n = CommonUtilities.NormalizeName(gearItem.name);
+								if (n == pattern)
+								{
+									gi = gearItem;
+									name = gi.name;
+									return true;
+								}
+								else continue;
+							}
+							else if (fuelitem)
+							{
+								if (IsFuelItem(gearItem))
+								{
+									gi = gearItem;
+									name = gi.name;
+								}
+								else continue;
+							}
+							else continue;
+						}
+					}
+				}
+			}
+
+			return false;
+		}
+
+		#region Handle Player Prefs
+		/// <summary>
+		/// Will get the current settings to check if the user is using metric or imperial units
+		/// </summary>
+		/// <returns>
+		/// 1 if the current option is metric<br/>
+		/// 2 if its imperial<br/>
+		/// Will also handle <see langword="null"/> checks:<br/>
+		/// Panel					= -1<br/>
+		/// List&lt;GameObject&gt;	= -2<br/>
+		/// Units GameObject		= -3<br/>
+		/// ComboBox				= -4
+		/// </returns>
+		public static int GetUserMetric()
+		{
+			Panel_OptionsMenu Options = InterfaceManager.GetPanel<Panel_OptionsMenu>();
+			if (Options == null) return -1;
+			Il2CppSystem.Collections.Generic.List<GameObject> Items = Options.m_DisplayMenuItems;
+			if (Items == null) return -2;
+			GameObject Units = Items[3];
+			if (Units == null) return -3;
+			ConsoleComboBox ComboBox = Units.GetComponent<ConsoleComboBox>();
+			if (ComboBox == null) return -4;
+
+			if (ComboBox.items.Count > ExpectedUnitsCount)
+			{
+				Main.Logger.Log($"The Units combobox has more than {ExpectedUnitsCount} items! This indicates that this setting has been updated to include other options!", FlaggedLoggingLevel.Warning);
+			}
+
+			if (ComboBox.GetCurrentIndex() == 0) return 1;
+			else return 2;
+		}
+		#endregion
 
 		#region Add
 		/// <summary>
-		/// 
+		/// Adds the given <paramref name="liters"/> to the <paramref name="gearItem"/>
 		/// </summary>
-		/// <param name="gearItem"></param>
-		/// <param name="liters"></param>
+		/// <param name="gearItem"><see cref="GearItem"/> to add the <paramref name="liters"/> to</param>
+		/// <param name="liters">The amount to add</param>
 		public static void AddLiters(GearItem gearItem, ItemLiquidVolume liters)
 		{
 			if (gearItem == null) return;
@@ -58,7 +134,6 @@ namespace FuelManager
 		}
 
 		#endregion
-
 		#region Is
 
 		/// <summary>
@@ -123,40 +198,52 @@ namespace FuelManager
 		{
 			return IsFuelContainer(gearItem) || IsKeroseneLamp(gearItem);
 		}
+
+		internal static bool IsFull(GearItem gearItem)
+		{
+			return GetIndividualRemainingLiters(gearItem) == ItemLiquidVolume.Zero;
+		}
 		#endregion
 
 		#region Get
 
+		// dont know if I need to keep these four now or just keep one...
+
 		/// <summary>
-		/// Returns a liquid quantity string with respect to the game units;
+		/// Returns a liquid quantity string with respect to the game units.
 		/// </summary>
+		/// <param name="quantityLiters">The instance of the current items liquid</param>
+		/// <returns>A string that is either metric or imperial based on user settings. Will return "NULL" if the various bits are null</returns>
 		internal static string GetLiquidQuantityString(ItemLiquidVolume quantityLiters)
 		{
-			return quantityLiters.ToString();
+			return (GetUserMetric() == 1) ? quantityLiters.ToStringMetric() : GetUserMetric() == 2 ? quantityLiters.ToStringImperialGallons() : "NULL";
 		}
 
 		/// <summary>
 		/// Returns a liquid quantity string with respect to the game units;
 		/// </summary>
+		[Obsolete("Use GetLiquidQuantityString instead")]
 		internal static string GetLiquidQuantityStringNoOunces(ItemLiquidVolume quantityLiters)
 		{
-			return quantityLiters.ToString();
+			return (GetUserMetric() == 1) ? quantityLiters.ToStringMetric() : quantityLiters.ToStringImperialGallons();
 		}
 
 		/// <summary>
 		/// Returns a liquid quantity string with respect to the game units;
 		/// </summary>
+		[Obsolete("Use GetLiquidQuantityString instead")]
 		internal static string GetLiquidQuantityStringWithUnits(ItemLiquidVolume quantityLiters)
 		{
-			return quantityLiters.ToString();
+			return (GetUserMetric() == 1) ? quantityLiters.ToStringMetric() : quantityLiters.ToStringImperialGallons();
 		}
 
 		/// <summary>
 		/// Returns a liquid quantity string with respect to the game units;
 		/// </summary>
+		[Obsolete("Use GetLiquidQuantityString instead")]
 		internal static string GetLiquidQuantityStringWithUnitsNoOunces(ItemLiquidVolume quantityLiters)
 		{
-			return quantityLiters.ToString();
+			return (GetUserMetric() == 1) ? quantityLiters.ToStringMetric() : quantityLiters.ToStringImperialGallons();
 		}
 
 		/// <summary>
@@ -173,7 +260,7 @@ namespace FuelManager
 		internal static ItemLiquidVolume GetLitersToRefuel(GearItem gearItem)
 		{
 			return ItemLiquidVolume.Min(
-						GetIndividualSpaceLiters(gearItem),     //amount of space in the fuel container
+						GetIndividualRemainingLiters(gearItem),     //amount of space in the fuel container
 						GetTotalCurrentLiters(gearItem)         //current amount of kerosene in other containers
 						);
 		}
@@ -203,7 +290,7 @@ namespace FuelManager
 		/// </summary>
 		/// <param name="gearItem">The fuel container being investigated.</param>
 		/// <returns>The amount (in liters) of empty space in the fuel container.</returns>
-		internal static ItemLiquidVolume GetIndividualSpaceLiters(GearItem gearItem)
+		internal static ItemLiquidVolume GetIndividualRemainingLiters(GearItem gearItem)
 		{
 			return GetIndividualCapacityLiters(gearItem) - GetIndividualCurrentLiters(gearItem);
 		}
@@ -219,7 +306,7 @@ namespace FuelManager
 
 			foreach (GameObject eachItem in GameManager.GetInventoryComponent().m_Items)
 			{
-				GearItem? gearItem = eachItem?.GetComponent<GearItem>();
+				GearItem gearItem = eachItem.GetComponent<GearItem>();
 				if (gearItem == null || gearItem == excludeItem || !IsFuelContainer(gearItem))
 				{
 					continue;
@@ -265,11 +352,83 @@ namespace FuelManager
 				GearItem gearItem = eachItem.GetComponent<GearItem>();
 				if (gearItem != null && gearItem != excludeItem && IsFuelContainer(gearItem))
 				{
-					result += GetIndividualSpaceLiters(gearItem);
+					result += GetIndividualRemainingLiters(gearItem);
 				}
 			}
 
 			return result;
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public static GearItem GetFuelContainerWithMostSpace()
+		{
+			GearItem fuelContainer = null; // do not add nullable(?)
+
+			for (int i = 0; i < GameManager.GetInventoryComponent().m_Items.Count; i++)
+			{
+				GearItem gi = GameManager.GetInventoryComponent().m_Items[i];
+				if (gi == null) continue;
+				if (IsFuelContainer(gi))
+				{
+					if (IsFull(gi)) continue;
+					if (fuelContainer == null)
+					{
+						fuelContainer = gi;
+						continue;
+					}
+					else
+					{
+						ItemLiquidVolume RemainingOriginal = GetIndividualRemainingLiters(fuelContainer);
+						ItemLiquidVolume RemainingToCompare = GetIndividualRemainingLiters(gi);
+
+						if (RemainingToCompare > RemainingOriginal)
+						{
+							fuelContainer = gi;
+						}
+						else continue;
+					}
+				}
+			}
+
+			return fuelContainer;
+		}
+
+		/// <summary>
+		/// Gets the container with the least amount of space
+		/// </summary>
+		/// <returns></returns>
+		public static GearItem GetFuelContainerWithLeastSpace()
+		{
+			GearItem fuelContainer = null; // do not add nullable(?)
+
+			for (int i = 0; i < GameManager.GetInventoryComponent().m_Items.Count; i++)
+			{
+				GearItem gi = GameManager.GetInventoryComponent().m_Items[i];
+				if (gi == null) continue;
+				if (IsFuelContainer(gi))
+				{
+					if (IsFull(gi)) continue;
+					if (fuelContainer == null)
+					{
+						fuelContainer = gi;
+						continue;
+					}
+					else
+					{
+						ItemLiquidVolume RemainingOriginal = GetIndividualRemainingLiters(fuelContainer);
+						ItemLiquidVolume RemainingToCompare = GetIndividualRemainingLiters(gi);
+
+						if (RemainingToCompare < RemainingOriginal)
+						{
+							fuelContainer = gi;
+						}
+					}
+				}
+			}
+
+			return fuelContainer;
 		}
 
 		public static void DoRefreshPanel()
@@ -287,7 +446,7 @@ namespace FuelManager
 
 		public static void Drain(GearItem gi, bool RestoreInHands, Panel_Inventory_Examine? panel = null)
 		{
-			GearItem? Target;
+			GearItem Target;
 			if (panel == null)
 			{
 				Target = gi;
@@ -350,7 +509,7 @@ namespace FuelManager
 		/// <param name="panel"></param>
 		public static void Refuel(GearItem gi, bool RestoreInHands, Panel_Inventory_Examine? panel = null)
 		{
-			GearItem? Target;
+			GearItem Target;
 			if (panel == null)
 			{
 				Target = gi;
@@ -416,7 +575,7 @@ namespace FuelManager
 
 		private static void OnDrainFinished(bool success, bool playerCancel, float progress)
 		{
-			GearItem? Target = Main.Target;
+			GearItem Target = Main.Target;
 
 			if (Target != null && IsFuelItem(Target))
 			{
@@ -431,7 +590,7 @@ namespace FuelManager
 
 		private static void OnRefuelFinished(bool success, bool playerCancel, float progress)
 		{
-			GearItem? Target = Main.Target;
+			GearItem Target = Main.Target;
 
 			if (Target != null && IsFuelItem(Target))
 			{

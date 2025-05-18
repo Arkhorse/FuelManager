@@ -1,2 +1,0 @@
-scene=BlackrockSteamTunnelsASurvival
-item=GEAR_GasCanFull p=40.9830,-0.0121,3.0070 r=354.2878,124.5430,359.9675 c=100

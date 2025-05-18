@@ -1,0 +1,3 @@
+scene=HighwayTransitionZone
+item=GEAR_GasCan p=380.2288,67.2076,441.4739 r=1.0397,31.2745,14.0059 c=100
+item=GEAR_GasCan p=669.8213,71.0798,417.4579 r=-0.0000,34.1409,-0.0000 c=10

@@ -16,34 +16,46 @@
 	<PropertyGroup>
 		<!-- This should point to wherever your games primary EXE is -->
 		<TheLongDarkPath>O:\SteamLibrary\steamapps\common\TheLongDark</TheLongDarkPath>
+		<Mods>$(TheLongDarkPath)\Mods</Mods>
+		<Plugins>$(TheLongDarkPath)\Plugins</Plugins>
+		<UserData>$(TheLongDarkPath)\UserData</UserData>
+		<UserLibs>$(TheLongDarkPath)\UserLibs</UserLibs>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<!-- These paths are for various mod resources -->
+		<ModResources>P:\Modding\The Long Dark</ModResources>
+		<UPDATES>$(ModResources)\UPDATES</UPDATES>
+		<MyMods>$(ModResources)\MyMods</MyMods>
+		<Libraries>$(ModResources)\Libraries</Libraries>
 		<ReleaseFolderPath>P:\Modding\The Long Dark\MyMods\FuelManager\Release</ReleaseFolderPath>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.35.0" />
-		<PackageReference Include="STBlade.Modding.TLD.ModSettings" Version="1.9.0" />
-		<PackageReference Include="STBlade.Modding.TLD.GearSpawner" Version="2.3.2" />
-		<PackageReference Include="STBlade.Modding.TLD.ModComponent" Version="6.2.3" />
+		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="*" />
+		<PackageReference Include="STBlade.Modding.TLD.ModSettings" Version="*" />
+		<PackageReference Include="STBlade.Modding.TLD.GearSpawner" Version="*" />
+		<PackageReference Include="STBlade.Modding.TLD.ModComponent" Version="*" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Reference Include="ComplexLogger">
-			<HintPath>..\..\..\Libraries\ComplexLogger.dll</HintPath>
+			<HintPath>$(Libraries)\ComplexLogger.dll</HintPath>
 		</Reference>
-		<!--
 		<Reference Include="ExamineActionsAPI">
-			<HintPath>O:\SteamLibrary\steamapps\common\TheLongDark\Mods\ExamineActionsAPI.dll</HintPath>
+			<HintPath>$(Libraries)\ExamineActionsAPI.dll</HintPath>
 		</Reference>
-	  -->
 	</ItemGroup>
 
 	<ItemGroup>
+		<Using Include="System.Text" />
 		<Using Include="System.Reflection" />
 		<Using Include="Il2Cpp" />
 		<Using Include="HarmonyLib" />
 		<Using Include="MelonLoader" />
 		<Using Include="UnityEngine" />
 		<Using Include="ModSettings" />
+		<Using Include="ComplexLogger"/>
 	</ItemGroup>
 
 	<!-- This is a build event. It will copy your dll to the currently defined TheLongDarkPath's Mods folder -->

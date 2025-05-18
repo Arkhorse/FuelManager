@@ -9,6 +9,7 @@ namespace FuelManager.Utilities
     /// </summary>
     public class AssetBundleUtils
     {
+#pragma warning disable CS8603
         /// <summary>
         /// Loads an asset without triggering the AssetLoader patches
         /// </summary>
@@ -20,9 +21,9 @@ namespace FuelManager.Utilities
         /// <summary>
         /// Loads an asset without triggering the AssetLoader patches
         /// </summary>
-        public static T? LoadAsset<T>(AssetBundle assetBundle, string name) where T : UnityEngine.Object
+        public static T LoadAsset<T>(AssetBundle assetBundle, string name) where T : UnityEngine.Object
         {
-            return LoadAsset(assetBundle, name, Il2CppType.Of<T>())?.TryCast<T>();
+            return LoadAsset(assetBundle, name, Il2CppType.Of<T>()).TryCast<T>();
         }
 
         /// <summary>

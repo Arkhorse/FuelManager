@@ -35,12 +35,12 @@
     "ModMillableBehaviour": {
         "RepairDurationMinutes"             : 15,
         "RepairRequiredGear"                : ["GEAR_RecycledPlastic"],
-        "RepairRequiredGearUnits"           : [2],
+        "RepairRequiredGearUnits"           : [1],
         "CanRestoreFromWornOut"             : true,
         "RecoveryDurationMinutes"           : 60,
         "RestoreRequiredGear"               : ["GEAR_RecycledPlastic"],
         "RestoreRequiredGearUnits"          : [6],
-        "Skill"                             : "None"
+        "Skill"                             : "ToolRepair"
     },
     "ModRepairableBehaviour": {
         "Audio"                             : "Play_RepairingMechanical",

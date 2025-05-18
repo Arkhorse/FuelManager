@@ -1,2 +1,0 @@
-scene=WhalingWarehouseA
-item=GEAR_GasCan p=-8.3042,0.3805,5.9577 r=0.0000,22.1680,0.0000 c=100

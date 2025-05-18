@@ -3,9 +3,9 @@ namespace FuelManager
 	[HarmonyPatch(typeof(Panel_Inventory_Examine), nameof(Panel_Inventory_Examine.OnRefuel))]
 	internal class Panel_Inventory_Examine_OnRefuel
 	{
-		private static bool Prefix(Panel_Inventory_Examine __instance)
+		private static bool Prefix(ref Panel_Inventory_Examine __instance)
 		{
-			if (!__instance.IsPanelPatchable()) return true;
+			if (!__instance.IsPanelPatchable(out string reason)) return true;
 			if (__instance.m_GearItem == null) return true;
 
 			GearItem gi = __instance.m_GearItem;
@@ -38,7 +38,7 @@ namespace FuelManager
 			}
 			catch (Exception e)
 			{
-				Main.Logger.Log($"Attempting to ", FlaggedLoggingLevel.Exception, e);
+				Main.Logger.Log($"Attempting to drain failed\n", FlaggedLoggingLevel.Exception, e);
 			}
 			return true;
 		}

@@ -1,2 +1,0 @@
-scene=DamTransitionZone
-item=GEAR_GasCan p=-49.4230,-8.7583,-0.7488 r=0.0000,1.0377,0.0000 c=10

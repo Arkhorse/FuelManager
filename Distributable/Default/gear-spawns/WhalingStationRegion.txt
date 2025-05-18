@@ -1,2 +1,0 @@
-scene=WhalingStationRegion
-item=GEAR_GasCan p=808.8569,15.7391,1032.6580 r=0.0000,286.0840,0.0000 c=10

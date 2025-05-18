@@ -1,5 +1,6 @@
 {
     "Name" : "FuelManager",
     "Author": "The Illusion",
-    "Version" : "1.2.7"
+    "Version" : "1.2.20",
+    "Requires": ["FuelManager.Shared"]
 }
