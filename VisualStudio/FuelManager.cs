@@ -1,15 +1,11 @@
-﻿global using FuelManager.Utilities;
-
-using Il2CppTLD.Gear;
-using Il2CppTLD.IntBackedUnit;
-
-namespace FuelManager
+﻿namespace FuelManager
 {
 	public class Main : MelonMod
 	{
 #pragma warning disable CS8618, CA2211
 		public static GearItem Target;
 #pragma warning restore CS8618, CA2211
+		[Obsolete("Use ItemLiquidVolume.Zero instead")]
 		public static ItemLiquidVolume MIN_LITERS_VOLUME { get; } = ItemLiquidVolume.FromLiters(0.001f);
 		public static string REFUEL_AUDIO { get; } = "Play_SndActionRefuelLantern";
 		internal static ComplexLogger<Main> Logger { get; } = new();
