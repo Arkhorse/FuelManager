@@ -13,10 +13,12 @@ namespace FuelManager
 			private static void Prefix()
 			{
 				deductLiquidFromInventoryCallDepth++;
+				Main.Logger.Log($"deductLiquidFromInventoryCallDepth: {deductLiquidFromInventoryCallDepth}", FlaggedLoggingLevel.Debug);
 			}
 			private static void Postfix()
 			{
 				deductLiquidFromInventoryCallDepth--;
+				Main.Logger.Log($"deductLiquidFromInventoryCallDepth: {deductLiquidFromInventoryCallDepth}", FlaggedLoggingLevel.Debug);
 			}
 		}
 
@@ -29,7 +31,7 @@ namespace FuelManager
 			//	return deductLiquidFromInventoryCallDepth > 0;
 			//}
 
-			public static bool Prefix(Inventory __instance, ref GameObject go)
+			public static bool Prefix(ref Inventory __instance, ref GameObject go)
 			{
 				if (__instance == null) return true;
 				if (go == null) return true;
