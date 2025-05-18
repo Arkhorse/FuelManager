@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Il2CppTLD.UI;
+﻿using Il2CppTLD.UI;
 
 namespace FuelManager.Utilities
 {
@@ -51,18 +44,31 @@ namespace FuelManager.Utilities
 
 			return obj;
 		}
+
+		// This is implemented in a fashion that is easily expandable. Instead of checking many things and then returning a value based on those, those things are checked in the body of the method, logged and then the 'results' int is incremented if applicable. This allows for a part of the method to be unchanged even when adding new checks
 		/// <summary>
-		/// Makes it more simple to know if a panel is patchable.
+		/// Makes it more simple to know if a panel is patchable. Will also output a reason if applicable
 		/// </summary>
 		/// <remarks>
 		/// <para>And allows me to change how this is calculated in one place.</para>
 		/// <para> The <see cref="Panel_AutoReferenced"/> class is extended by panels as of <c>2.39</c>.</para>
 		/// </remarks>
 		/// <param name="panel">The panel to check.</param>
+		/// <param name="reason">The reason the panel is not patchable, should this be false</param>
 		/// <returns><see langword="true"/> if the panel is not null, <see langword="false"/> otherwise.</returns>
-		public static bool IsPanelPatchable(this Panel_AutoReferenced panel)
+		public static bool IsPanelPatchable<Panel_AutoReferenced>(this Panel_AutoReferenced panel, out string reason)
 		{
-			return !(panel == null);
+			StringBuilder sb = new();
+			int results = 0;
+
+			if (panel == null)
+			{
+				sb.AppendLine("Current PANEL is null");
+				results++;
+			}
+
+			reason = sb.ToString();
+			return results == 0;
 		}
 	}
 	#endregion
