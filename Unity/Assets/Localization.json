@@ -8,7 +8,8 @@
                             "Polish" : "Kanister",
                             "Traditional Chinese" : "汽油罐",
                             "Simplified Chinese" : "汽油罐",
-                            "Italian" : "Contenitore per Benzina"
+                            "Italian" : "Contenitore per Benzina",
+                            "Turkish" : "Yakıt Bidonu"
     },
     "GAMEPLAY_GasCanDescription" : {
                             "English" : "An old gas can. Holds kerosene just as well.",
@@ -19,7 +20,8 @@
                             "Polish" : "Stary kanister. Odpowiedni do przechowywania paliwa.",
                             "Traditional Chinese" : "一個老舊的汽油罐，也可拿來裝燃油。",
                             "Simplified Chinese" : "一个老旧的汽油罐，也可拿来装燃油。",
-                            "Italian" : "Un contenitore per benzina. Può contenere cherosene altrettanto bene."
+                            "Italian" : "Un contenitore per benzina. Può contenere cherosene altrettanto bene.",
+                            "Turkish" : "Eski bir yakıt bidonu. Gazyağı da tutuyor."
               
     },
     "GAMEPLAY_BFM_NoFuelCapacityAvailable" : {
@@ -30,7 +32,7 @@
                             "Japanese" : "空きのある容器がありません",
                             "Swedish" : "Inga behållare med tillgängligt utrymme",
                             "Spanish (Spain)" : "No hay contenedores disponibles con suficiente capacidad",
-                            "Turkish" : "Kalan kapasiteye sahip konteyner yok",
+                            "Turkish" : "Kalan kapasiteye sahip bidon yok",
                             "Dutch" : "Er is geen container in je inventory met genoeg opslag",
                             "Finnish" : "Ei säiliötä, joissa on jäljellä käytettävää tilaa",
                             "Polish" : "Brak zbiorników z wymaganą pojemnością",
@@ -78,7 +80,7 @@
                             "Japanese" : "失われました",
                             "Swedish" : "Förlorat",
                             "Spanish (Spain)" : "Perdidos",
-                            "Turkish" : "Boşa harcandı",
+                            "Turkish" : "Yere döküldü",
                             "Dutch" : "Verspild",
                             "Finnish" : "Menetetty",
                             "Polish" : "Stracone",
