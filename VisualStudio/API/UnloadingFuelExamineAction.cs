@@ -2,6 +2,7 @@
 
 namespace FuelManager.API
 {
+#pragma warning disable CS8600, CS8602 // Converting null literal or possible null value to non-nullable type.
 	class UnloadingFuelExamineAction : IExamineAction, IExamineActionProduceLiquid, IExamineActionDisplayInfo
 	{
 		public UnloadingFuelExamineAction()
@@ -53,6 +54,10 @@ namespace FuelManager.API
 			ItemLiquidVolume litersToDrain = Fuel.GetLitersToDrain(gi);
 			Fuel.AddTotalCurrentLiters(litersToDrain, gi);
 			Fuel.AddLiters(gi, -litersToDrain);
+			if ((bool)state.Temp[0])
+			{
+				gi.m_KeroseneLampItem.TurnOn(true);
+			}
 		}
 		public int CalculateDurationMinutes(ExamineActionState state) => 3;
 		public float CalculateProgressSeconds(ExamineActionState state) => 2;
@@ -67,7 +72,17 @@ namespace FuelManager.API
 			liquids.Add(new(kerosene, Fuel.GetIndividualCurrentLiters(gi).ToQuantity(1), 100));
 		}
 		public void OnActionDeselected(ExamineActionState state) { }
-		public void OnActionInterruptedBySystem(ExamineActionState state) { }
+		public void OnActionInterruptedBySystem(ExamineActionState state)
+		{
+			StringBuilder sb = new();
+
+			if (state.Subject.m_KeroseneLampItem != null)
+			{
+				sb.Append(state.Temp[0]);
+			}
+
+			Main.Logger.Log(sb.ToString(), FlaggedLoggingLevel.Debug);
+		}
 		public void OnActionSelected(ExamineActionState state) { }
 		public void OnPerforming(ExamineActionState state)
 		{
@@ -88,4 +103,5 @@ namespace FuelManager.API
 			configs.Add(info);
 		}
 	}
+#pragma warning restore CS8600, CS8602 // Converting null literal or possible null value to non-nullable type.
 }
