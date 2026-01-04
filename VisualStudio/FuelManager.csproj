@@ -24,18 +24,18 @@
 
 	<PropertyGroup>
 		<!-- These paths are for various mod resources -->
-		<ModResources>P:\Modding\The Long Dark</ModResources>
+		<ModResources>R:\Modding\The Long Dark</ModResources>
 		<UPDATES>$(ModResources)\UPDATES</UPDATES>
 		<MyMods>$(ModResources)\MyMods</MyMods>
 		<Libraries>$(ModResources)\Libraries</Libraries>
-		<ReleaseFolderPath>P:\Modding\The Long Dark\MyMods\FuelManager\Release</ReleaseFolderPath>
+		<ReleaseFolderPath>R:\Modding\The Long Dark\MyMods\FuelManager\Release</ReleaseFolderPath>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="*" />
 		<PackageReference Include="STBlade.Modding.TLD.ModSettings" Version="*" />
 		<PackageReference Include="STBlade.Modding.TLD.GearSpawner" Version="*" />
-		<PackageReference Include="STBlade.Modding.TLD.ModComponent" Version="*" />
+		<!--<PackageReference Include="STBlade.Modding.TLD.ModComponent" Version="*" />-->
 	</ItemGroup>
 
 	<ItemGroup>
