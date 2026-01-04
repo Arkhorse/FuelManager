@@ -12,8 +12,10 @@
 		public static bool GetGearItemFromInventory(string? pattern, bool fuelitem, [NotNullWhen(true)] out GearItem gi, [NotNullWhen(true)] out string name)
 		{
 			Inventory inventory = GameManager.GetInventoryComponent();
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 			name = null;
 			gi = null;
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
 			if (inventory != null)
 			{
 				Il2CppCollections.List<GearItemObject> items = inventory.m_Items;
@@ -203,6 +205,12 @@
 		{
 			return GetIndividualRemainingLiters(gearItem) == ItemLiquidVolume.Zero;
 		}
+
+		public static bool IsEmpty(GearItem gearItem)
+		{
+			return GetIndividualCurrentLiters(gearItem) == ItemLiquidVolume.Zero;
+		}
+
 		#endregion
 
 		#region Get
@@ -364,7 +372,9 @@
 		/// <returns></returns>
 		public static GearItem GetFuelContainerWithMostSpace()
 		{
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
 			GearItem fuelContainer = null; // do not add nullable(?)
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
 			for (int i = 0; i < GameManager.GetInventoryComponent().m_Items.Count; i++)
 			{
@@ -401,7 +411,9 @@
 		/// <returns></returns>
 		public static GearItem GetFuelContainerWithLeastSpace()
 		{
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
 			GearItem fuelContainer = null; // do not add nullable(?)
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
 			for (int i = 0; i < GameManager.GetInventoryComponent().m_Items.Count; i++)
 			{
