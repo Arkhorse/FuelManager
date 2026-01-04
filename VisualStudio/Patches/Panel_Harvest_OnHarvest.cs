@@ -5,6 +5,7 @@
 	{
 		public static void Postfix(ref Panel_Harvest __instance)
 		{
+			if (__instance == null) return;
 			GearItem gi = __instance.GetSelectedHarvestItem();
 			if (gi != null)
 			{
@@ -18,6 +19,8 @@
 						// tell the player that they lost some kerosene
 						Message.SendLostMessageDelayed(liquid);
 					}
+
+					Main.IsHarvestDestroy = true;
 
 					StringBuilder sb = new($"Panel_Harvest.OnHarvest::{name}");
 					sb.AppendLine($"\tFuel Remaining? {!Constants.Empty(liquid)}");
