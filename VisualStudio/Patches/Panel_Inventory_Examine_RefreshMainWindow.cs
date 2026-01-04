@@ -49,7 +49,9 @@ namespace FuelManager
 				{
 					Main.Logger.Log($"Panel_Inventory_Examine_RefreshMainWindow: {gi.name}", FlaggedLoggingLevel.Debug);
 
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
 					UIButton ButtonUnload = __instance.m_Button_Unload;
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 					if (ButtonUnload == null)
 					{
 						Main.Logger.Log("__instance.m_Button_Unload is null", FlaggedLoggingLevel.Debug);
@@ -68,6 +70,8 @@ namespace FuelManager
 						UE: false
 					*/
 					// obviously this shouldnt including the unload button
+
+#pragma warning disable CS8604 // Possible null reference argument.
 					Vector3 position = Buttons.GetBottomPosition(
 						__instance.m_ButtonSpacing,
 						__instance.m_Button_Harvest,
@@ -76,6 +80,7 @@ namespace FuelManager
 						__instance.m_Button_Refuel,
 						__instance.m_Button_Clean,
 						__instance.m_Button_Sharpen);
+#pragma warning restore CS8604 // Possible null reference argument.
 
 					UnloadButton.transform.localPosition = position;
 					UnloadButton.gameObject.SetActive(true);
