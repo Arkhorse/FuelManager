@@ -8,7 +8,10 @@
 		[Obsolete("Use ItemLiquidVolume.Zero instead")]
 		public static ItemLiquidVolume MIN_LITERS_VOLUME { get; } = ItemLiquidVolume.FromLiters(0.001f);
 		public static string REFUEL_AUDIO { get; } = "Play_SndActionRefuelLantern";
+		public static uint REFUEL_AUDIO_UINT { get; } = Il2CppAK.EVENTS.PLAY_SNDACTIONREFUELLANTERN;
 		internal static ComplexLogger<Main> Logger { get; } = new();
+		/// <summary>Used to handle if something is being harvested and thus should be destroyed</summary>
+		public static bool IsHarvestDestroy { get; set; } = false;
 
 		public static LiquidType GetKerosene()
 		{
@@ -18,7 +21,8 @@
 			}
 			catch (Exception e)
 			{
-				throw new BadMemeException($"LiquidType.GetKerosene() was not found due to {e.Message}");
+				Logger.Log($"Attempting to get Kerosene failed", FlaggedLoggingLevel.Exception, e);
+				return null;
 			}
 		}
 
