@@ -1,0 +1,22 @@
+name: Bug Report
+description: File a bug report.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+type: bug
+body:
+  - type: textarea
+    id: bug-user-description
+    attributes:
+      label: Describe the issue
+      description: "Make sure to tell us how it happened"
+      placeholder: "What happened?""
+    validations:
+      required: true
+  - type: input
+    id: version-ml
+    attributes:
+      label: Which version of MelonLoader are you using?
+      value: 0.6.6
+    validations:
+      required: true
+  
