@@ -3,23 +3,26 @@
 namespace FuelManager.API
 {
 #pragma warning disable CS8600, CS8602 // Converting null literal or possible null value to non-nullable type.
-	class UnloadingFuelExamineAction : IExamineAction, IExamineActionProduceLiquid, IExamineActionDisplayInfo
+	class UnloadingFuelExamineAction : IExamineAction, IExamineActionProduceLiquid, IExamineActionDisplayInfo, IExamineActionCancellable
 	{
 		public UnloadingFuelExamineAction()
 		{
 			info = new(new() { m_LocalizationID = "Loaded" }, $"? L");
 		}
-		public string Id => nameof(UnloadingFuelExamineAction);
-		public string MenuItemLocalizationKey => "GAMEPLAY_BFM_Drain";
-		public string? MenuItemSpriteName => "ico_lightSource_lantern";
-		public LocalizedString ActionButtonLocalizedString { get; } = new LocalizedString() { m_LocalizationID = "GAMEPLAY_BFM_Drain" };
-		public IExamineActionPanel? CustomPanel => null;
 		InfoItemConfig info;
-		public bool IsActionAvailable(GearItem item)
+		#region IExamineAction Implementation
+		string IExamineAction.Id => nameof(UnloadingFuelExamineAction);
+		string IExamineAction.MenuItemLocalizationKey => "(EAPI) Drain";
+		string? IExamineAction.MenuItemSpriteName => "ico_lightSource_lantern";
+		LocalizedString IExamineAction.ActionButtonLocalizedString { get; } = new LocalizedString() { m_LocalizationID = "(EAPI) Drain" };
+		IExamineActionPanel? IExamineAction.CustomPanel => null;
+		int IExamineAction.GetDurationMinutes(ExamineActionState state) => 3;
+		float IExamineAction.GetProgressSeconds(ExamineActionState state) => 2;
+		bool IExamineAction.IsActionAvailable(GearItem item)
 		{
 			return Fuel.IsFuelItem(item);
 		}
-		public bool CanPerform(ExamineActionState state)
+		bool IExamineAction.CanPerform(ExamineActionState state)
 		{
 			if (state.Subject == null) return false;
 			GearItem gi = state.Subject;
@@ -31,7 +34,7 @@ namespace FuelManager.API
 
 			return (!Constants.Empty(currentLiters)) && (!Fuel.IsFull(gi));
 		}
-		public void OnPerform(ExamineActionState state)
+		void IExamineAction.OnPerforming(ExamineActionState state)
 		{
 			if (state.Subject == null) return;
 			GearItem gi = state.Subject;
@@ -47,7 +50,7 @@ namespace FuelManager.API
 			}
 			state.Temp[1] = currentLiters;
 		}
-		public void OnSuccess(ExamineActionState state)
+		void IExamineAction.OnSuccess(ExamineActionState state)
 		{
 			if (state.Subject == null) return;
 			GearItem gi = state.Subject;
@@ -59,20 +62,8 @@ namespace FuelManager.API
 				gi.m_KeroseneLampItem.TurnOn(true);
 			}
 		}
-		public int CalculateDurationMinutes(ExamineActionState state) => 3;
-		public float CalculateProgressSeconds(ExamineActionState state) => 2;
-		public bool ConsumeOnSuccess(ExamineActionState state) => false;
-		public void GetProductLiquid(ExamineActionState state, List<MaterialOrProductLiquidConf> liquids)
-		{
-			GearItem gi = state.Subject;
-			if (gi == null) return;
-			LiquidType kerosene = PowderAndLiquidTypesLocator.KeroseneType;
-			if (kerosene == null) return;
-
-			liquids.Add(new(kerosene, Fuel.GetIndividualCurrentLiters(gi).ToQuantity(1), 100));
-		}
-		public void OnActionDeselected(ExamineActionState state) { }
-		public void OnActionInterruptedBySystem(ExamineActionState state)
+		bool IExamineAction.ShouldConsumeOnSuccess(ExamineActionState state) => false;
+		void IExamineAction.OnActionInterruptedBySystem(ExamineActionState state)
 		{
 			StringBuilder sb = new();
 
@@ -83,25 +74,34 @@ namespace FuelManager.API
 
 			Main.Logger.Log(sb.ToString(), FlaggedLoggingLevel.Debug);
 		}
-		public void OnActionSelected(ExamineActionState state) { }
-		public void OnPerforming(ExamineActionState state)
+		void IExamineAction.OnActionDeselected(ExamineActionState state) { }
+		void IExamineAction.OnActionSelected(ExamineActionState state) { }
+		#endregion
+		#region IExamineActionProduceLiquid Implementation
+		void IExamineActionProduceLiquid.GetProductLiquid(ExamineActionState state, List<MaterialOrProductLiquidConf> liquids)
 		{
-			throw new NotImplementedException();
+			GearItem gi = state.Subject;
+			if (gi == null) return;
+			LiquidType kerosene = PowderAndLiquidTypesLocator.KeroseneType;
+			if (kerosene == null) return;
+
+			liquids.Add(new(kerosene, Fuel.GetIndividualCurrentLiters(gi).ToQuantity(1), 100));
 		}
-		public int GetDurationMinutes(ExamineActionState state)
-		{
-			throw new NotImplementedException();
-		}
-		public float GetProgressSeconds(ExamineActionState state)
-		{
-			throw new NotImplementedException();
-		}
-		public bool ShouldConsumeOnSuccess(ExamineActionState state) => false;
-		public void GetInfoConfigs(ExamineActionState state, List<InfoItemConfig> configs)
+		#endregion
+		#region IExamineActionDisplayInfo Implementation
+		void IExamineActionDisplayInfo.GetInfoConfigs(ExamineActionState state, List<InfoItemConfig> configs)
 		{
 			info.Content = Fuel.GetLiquidQuantityString(state.Subject.gameObject.GetComponent<LiquidItem>().m_Liquid);
 			configs.Add(info);
 		}
+		#endregion
+		#region IExamineActionCancellable Implementation
+		void IExamineActionCancellable.OnActionCancellation(ExamineActionState state)
+		{
+			
+		}
+		bool IExamineActionCancellable.ShouldConsumeOnCancellation(ExamineActionState state) => false;
+		#endregion
 	}
 #pragma warning restore CS8600, CS8602 // Converting null literal or possible null value to non-nullable type.
 }
