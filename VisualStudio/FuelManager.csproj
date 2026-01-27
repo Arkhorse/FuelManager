@@ -34,8 +34,8 @@
 	<ItemGroup>
 		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="*" />
 		<PackageReference Include="STBlade.Modding.TLD.ModSettings" Version="*" />
-		<PackageReference Include="STBlade.Modding.TLD.GearSpawner" Version="*" />
-		<!--<PackageReference Include="STBlade.Modding.TLD.ModComponent" Version="*" />-->
+		<!--<PackageReference Include="STBlade.Modding.TLD.GearSpawner" Version="*" />
+		<PackageReference Include="STBlade.Modding.TLD.ModComponent" Version="*" />-->
 	</ItemGroup>
 
 	<ItemGroup>
@@ -44,6 +44,9 @@
 		</Reference>
 		<Reference Include="ExamineActionsAPI">
 			<HintPath>$(Libraries)\ExamineActionsAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="ModComponent">
+		  <HintPath>$(Libraries)\ModComponent.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
@@ -55,7 +58,7 @@
 		<Using Include="MelonLoader" />
 		<Using Include="UnityEngine" />
 		<Using Include="ModSettings" />
-		<Using Include="ComplexLogger"/>
+		<Using Include="ComplexLogger" />
 	</ItemGroup>
 
 	<!-- This is a build event. It will copy your dll to the currently defined TheLongDarkPath's Mods folder -->
