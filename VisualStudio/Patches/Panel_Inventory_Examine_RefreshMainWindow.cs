@@ -71,28 +71,34 @@ namespace FuelManager
 					*/
 					// obviously this shouldnt including the unload button
 
-#pragma warning disable CS8604 // Possible null reference argument.
-					Vector3 position = Buttons.GetBottomPosition(
-						__instance.m_ButtonSpacing,
-						__instance.m_Button_Harvest,
-						__instance.m_Button_Repair,
-						__instance.m_Button_SafehouseCustomizationRepair,
-						__instance.m_Button_Refuel,
-						__instance.m_Button_Clean,
-						__instance.m_Button_Sharpen);
-#pragma warning restore CS8604 // Possible null reference argument.
+					if (ButtonsNotNull(ref __instance))
+					{
+						Vector3 position = Buttons.GetBottomPosition(
+							__instance.m_ButtonSpacing,
+							__instance.m_Button_Harvest,
+							__instance.m_Button_Repair,
+							__instance.m_Button_SafehouseCustomizationRepair,
+							__instance.m_Button_Refuel,
+							__instance.m_Button_Clean,
+							__instance.m_Button_Sharpen);
 
-					UnloadButton.transform.localPosition = position;
-					UnloadButton.gameObject.SetActive(true);
+						UnloadButton.transform.localPosition = position;
+						UnloadButton.gameObject.SetActive(true);
 
-					UnloadButton.SetDisabled(Constants.Empty(Fuel.GetLitersToDrain(gi)));
-					Main.Logger.Log($"DEBUG DATA:\n\tPosition: {position}\n\tDrained: {Fuel.GetLitersToDrain(gi)}\n\tSetDisabled: {Constants.Empty(Fuel.GetLitersToDrain(gi))}", FlaggedLoggingLevel.Debug);
+						UnloadButton.SetDisabled(Constants.Empty(Fuel.GetLitersToDrain(gi)));
+						Main.Logger.Log($"DEBUG DATA:\n\tPosition: {position}\n\tDrained: {Fuel.GetLitersToDrain(gi)}\n\tSetDisabled: {Constants.Empty(Fuel.GetLitersToDrain(gi))}", FlaggedLoggingLevel.Debug);
+					}
 				}
 			}
 			catch (Exception e)
 			{
 				Main.Logger.Log($"RefreshMainWindow patch failed\n", FlaggedLoggingLevel.Exception, e);
 			}
+		}
+
+		static bool ButtonsNotNull(ref Panel_Inventory_Examine __instance)
+		{
+			return !(__instance.m_Button_Clean == null || __instance.m_Button_Harvest == null || __instance.m_Button_Refuel == null || __instance.m_Button_Repair == null || __instance.m_Button_Sharpen == null || __instance.m_Button_Unload == null);
 		}
 	}
 }
