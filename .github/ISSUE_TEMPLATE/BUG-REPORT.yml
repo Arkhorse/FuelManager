@@ -4,20 +4,30 @@ title: "[Bug]: "
 labels: ["bug", "triage"]
 type: bug
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
   - type: textarea
     id: bug-user-description
     attributes:
-      label: "Describe the issue"
-      description: "Make sure to tell us how it happened"
-      placeholder: "What happened?"
+      label: Describe the issue
+      description: Make sure to tell us how it happened
+      placeholder: What happened?
     validations:
       required: true
   - type: input
     id: version-ml
     attributes:
-      label: "Which version of MelonLoader are you using?"
-      description: "This is needed to ensure you are on the write version"
+      label: Which version of MelonLoader are you using?
+      description: This is needed to ensure you are on the write version
       placeholder: 0.7.2
     validations:
       required: true
-  
+  - type: upload
+    id: log
+    attributes:
+      label: Upload the Latest.log
+      description: This is needed as otherwise I cant see what is actually going on
+    validations:
+      required: true
