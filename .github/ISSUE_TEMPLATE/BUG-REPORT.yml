@@ -16,7 +16,8 @@ body:
     id: version-ml
     attributes:
       label: "Which version of MelonLoader are you using?"
-      value: 0.7.2
+      description: "This is needed to ensure you are on the write version"
+      placeholder: 0.7.2
     validations:
       required: true
   
