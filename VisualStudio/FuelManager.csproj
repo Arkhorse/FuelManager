@@ -28,7 +28,7 @@
 		<UPDATES>$(ModResources)\UPDATES</UPDATES>
 		<MyMods>$(ModResources)\MyMods</MyMods>
 		<Libraries>$(ModResources)\Libraries</Libraries>
-		<ReleaseFolderPath>R:\Modding\The Long Dark\MyMods\FuelManager\Release</ReleaseFolderPath>
+		<ReleaseFolderPath>R:\Modding\The Long Dark\Github\MyMods\FuelManager\Release</ReleaseFolderPath>
 	</PropertyGroup>
 
 	<ItemGroup>
