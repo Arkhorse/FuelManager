@@ -1,4 +1,6 @@
-﻿namespace FuelManager
+﻿using Il2Cpp;
+
+namespace FuelManager
 {
 	public class Main : MelonMod
 	{
@@ -53,14 +55,17 @@
 		{
 			base.OnUpdate();
 
-			if (GameManager.IsEmptySceneActive()
-				|| GameManager.IsBootSceneActive()
-				|| GameManager.IsMainMenuActive()
-				|| GameManager.m_IsPaused
-				|| InterfaceManager.IsOverlayActiveCached())
+			try
 			{
-				return;
+				if (GameManager.IsEmptySceneActive()
+					|| GameManager.IsMainMenuActive()
+					|| GameManager.m_IsPaused
+					|| InterfaceManager.IsOverlayActiveCached())
+				{
+					return;
+				}
 			}
+			catch { }
 
 			try
 			{
