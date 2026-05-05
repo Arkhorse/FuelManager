@@ -26,6 +26,21 @@
 			}
 		}
 
+		/// <summary>
+		/// Checks if the GearItem.DisplayName is valid. Otherwise it will log the PDID
+		/// </summary>
+		/// <param name="gi">The GearItem to check</param>
+		/// <returns><see langword="true"/> if the <see cref="GearItem.DisplayName"/> is valid</returns>
+		public static bool CheckGearNameValid(GearItem gi)
+		{
+			if (string.IsNullOrWhiteSpace(gi.DisplayName))
+			{
+				Logger.Log($"Found GearItem with no name. PDID: {gi.gameObject.GetComponent<ObjectGuid>().PDID}", FlaggedLoggingLevel.Debug);
+				return false;
+			}
+			return true;
+		}
+
 		public override void OnInitializeMelon()
 		{
 			Setup.VerifyMCFiles();
