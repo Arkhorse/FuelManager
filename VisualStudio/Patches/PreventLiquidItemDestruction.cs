@@ -7,13 +7,15 @@
 		[HarmonyPatch(typeof(PlayerManager), nameof(PlayerManager.DeductLiquidFromInventory), [typeof(ItemLiquidVolume), typeof(LiquidType)])]
 		public static class PlayerManager_DeductLiquidFromInventory
 		{
-			private static void Prefix()
+			private static void Prefix(ref LiquidType liquidType)
 			{
+				if (liquidType != Main.GetKerosene()) return;
 				deductLiquidFromInventoryCallDepth++;
 				Main.Logger.Log($"deductLiquidFromInventoryCallDepth: {deductLiquidFromInventoryCallDepth}", FlaggedLoggingLevel.Debug);
 			}
-			private static void Postfix()
+			private static void Postfix(ref LiquidType liquidType)
 			{
+				if (liquidType != Main.GetKerosene()) return;
 				deductLiquidFromInventoryCallDepth--;
 				Main.Logger.Log($"deductLiquidFromInventoryCallDepth: {deductLiquidFromInventoryCallDepth}", FlaggedLoggingLevel.Debug);
 			}
@@ -54,8 +56,9 @@
 				if (__instance == null) return true;
 				if (gi == null) return true;
 				if (string.IsNullOrWhiteSpace(gi.name)) return true;
+				if (!Fuel.IsFuelItem(gi)) return true;
 
-				Main.Logger.Log($"Inventory.DestroyGear(GearItem gi): Name: {gi.name}", FlaggedLoggingLevel.Debug);
+				Main.Logger.Log($"Inventory.DestroyGear({gi.name})", FlaggedLoggingLevel.Debug);
 
 				return !Main.IsHarvestDestroy;
 			}
